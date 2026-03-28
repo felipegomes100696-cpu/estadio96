@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estádio 96 — Camisas de Futebol</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0d0d0d;--white:#fff;--gray:#f5f5f5;--mid:#777;--border:#e2e2e2;--gold:#f5c518;--green:#00b050;--red:#e8192c}
+body{background:#fff;font-family:'Barlow',sans-serif;color:#111}
+nav{background:var(--black);height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;position:sticky;top:0;z-index:200}
+.nav-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#fff;letter-spacing:3px;text-transform:uppercase}
+.nav-logo em{color:var(--gold);font-style:normal}
+.nav-right{display:flex;gap:.75rem;align-items:center}
+.btn-wpp{background:var(--green);color:#fff;border:none;padding:.45rem 1rem;border-radius:3px;font-family:'Barlow',sans-serif;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;cursor:pointer}
+.btn-wpp:hover{filter:brightness(1.1)}
+.btn-cart{background:transparent;border:1.5px solid rgba(255,255,255,.3);color:#fff;padding:.4rem .9rem;border-radius:3px;font-family:'Barlow',sans-serif;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;cursor:pointer;display:flex;align-items:center;gap:.4rem;transition:all .2s;position:relative}
+.btn-cart:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.cart-badge{background:var(--gold);color:#111;font-size:.6rem;font-weight:900;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;top:-6px;right:-6px}
+.cart-badge.hidden{display:none}
+.hero{background:var(--black);padding:4rem 2rem 3.5rem;position:relative;overflow:hidden;text-align:center}
+.hero::before{content:'2026';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22rem;color:rgba(255,255,255,.03);white-space:nowrap;pointer-events:none;line-height:1}
+.hero-tag{display:inline-block;background:var(--gold);color:#111;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;padding:4px 14px;border-radius:2px;margin-bottom:1rem}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(3rem,8vw,6rem);color:#fff;text-transform:uppercase;line-height:.92;letter-spacing:-1px;margin-bottom:1rem}
+.hero h1 span{color:var(--gold)}
+.hero p{color:rgba(255,255,255,.5);font-size:.95rem;max-width:480px;margin:0 auto 1.5rem;line-height:1.6}
+.hero-flags{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;font-size:1.8rem}
+/* liga-nav definida abaixo */
+.liga-nav::-webkit-scrollbar{display:none}
+.ltab{background:transparent;border:none;border-bottom:3px solid transparent;color:rgba(255,255,255,.4);font-family:'Barlow',sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:.8rem .9rem;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:.35rem;transition:all .2s;flex-shrink:0}
+.ltab:hover{color:rgba(255,255,255,.8)}
+.ltab.active{color:#fff;border-bottom-color:var(--gold);background:rgba(255,255,255,.06)}
+.ltab .flag{font-size:.95rem}
+@media(max-width:600px){
+  nav{padding:0 1rem}
+  .ltab{font-size:.68rem;padding:.7rem .7rem;gap:.25rem;letter-spacing:.3px}
+  .ltab .flag{font-size:.9rem}
+  .ltab.active{background:rgba(255,255,255,.08);border-bottom-width:3px}
+}
+.section{display:none;padding:1.5rem 1.5rem 3rem}
+.section.active{display:block}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.5rem}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:.5rem}
+.section-title .flag{font-size:1.4rem}
+.prod-count{font-size:.78rem;color:var(--mid);font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:1rem;background:transparent}
+@media(max-width:600px){
+  .grid{grid-template-columns:repeat(2,1fr);gap:.6rem}
+  .card-name{font-size:.85rem}
+  .card-price{font-size:1.05rem}
+  .card-league{font-size:.6rem}
+}
+.card{background:#fff;display:flex;flex-direction:column;transition:box-shadow .18s;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.card:hover{box-shadow:0 4px 20px rgba(0,0,0,.12);z-index:2;position:relative}
+.card-img{aspect-ratio:3/4;background:#f7f7f7;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.card:hover .card-img img{transform:scale(1.04)}
+.card-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;background:#f5f5f5}
+.card-placeholder span{font-size:.65rem;color:#bbb;text-align:center;padding:0 1rem}
+.badge{position:absolute;top:8px;left:8px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px}
+.badge-new{background:var(--black);color:#fff}
+.badge-sale{background:var(--red);color:#fff}
+/* BADGES EXTRAS */
+.badge-kids{background:#7c3aed;color:#fff}
+.badge-jogador{background:#0ea5e9;color:#fff}
+.badge-torcedor{background:#f97316;color:#fff}
+.card-body{padding:.8rem .9rem 1rem;flex:1;display:flex;flex-direction:column;gap:.4rem}
+
+.card-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.05rem;text-transform:uppercase;letter-spacing:.2px;line-height:1.15}
+.card-price{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:var(--black)}
+.size-row{display:flex;align-items:center;gap:.4rem;margin-top:.35rem}
+.sz-select{flex:1;min-width:0;border:1.5px solid #ddd;border-radius:4px;padding:.28rem .4rem;font-family:'Barlow',sans-serif;font-size:.72rem;font-weight:600;color:#333;cursor:pointer;outline:none;background:#fff;transition:border-color .15s;max-width:100%}
+.sz-select:focus,.sz-select:hover{border-color:#999}
+.sz-select option[value=""]{color:#aaa}
+.btn-medidas-inline{flex-shrink:0;background:transparent;border:1.5px solid #ddd;color:#555;font-size:1rem;line-height:1;padding:.28rem .42rem;border-radius:4px;cursor:pointer;white-space:nowrap;transition:all .15s;display:flex;align-items:center;justify-content:center}
+.btn-medidas-inline:hover{border-color:#555;background:#f5f5f5}
+.card-league-row{display:flex;align-items:center;justify-content:space-between;gap:.3rem}
+.card-league{font-size:.65rem;color:var(--mid);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.btn-share{background:transparent;border:none;padding:0;cursor:pointer;opacity:.45;transition:opacity .15s;display:flex;align-items:center;flex-shrink:0}
+.btn-share:hover{opacity:.9}
+.btn-share svg{width:16px;height:16px}
+/* GALERIA MÚLTIPLAS FOTOS */
+.gallery-wrap{position:relative;width:100%;height:100%}
+.gallery-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);border:none;color:#fff;width:26px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.85rem;z-index:4;transition:background .15s}
+.gallery-btn:hover{background:rgba(0,0,0,.75)}
+.gallery-btn.prev{left:0;border-radius:0 3px 3px 0}
+.gallery-btn.next{right:0;border-radius:3px 0 0 3px}
+.gallery-dots{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);display:flex;gap:4px;z-index:4}
+.gallery-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:background .15s}
+.gallery-dot.ativo{background:#fff}
+/* GALERIA */
+.gallery-wrap img{width:100%;height:100%;object-fit:cover;display:none}
+.gallery-wrap img.gal-active{display:block}
+.gal-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);border:none;color:#fff;width:24px;height:34px;cursor:pointer;z-index:4;display:flex;align-items:center;justify-content:center;font-size:.8rem;border-radius:3px;transition:background .15s}
+.gal-btn:hover{background:rgba(0,0,0,.75)}
+.gal-prev{left:4px}
+.gal-next{right:4px}
+.gal-dots{position:absolute;bottom:5px;left:50%;transform:translateX(-50%);display:flex;gap:4px;z-index:4}
+.gal-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer;transition:background .15s}
+.gal-dot.active{background:#fff}
+.card-actions{display:flex;align-items:center;gap:.5rem;margin-top:.4rem}
+.qty-ctrl{display:flex;align-items:center;border:1px solid #ddd;border-radius:3px;overflow:hidden}
+.qty-btn{background:#f5f5f5;border:none;width:26px;height:26px;font-size:.9rem;cursor:pointer;font-family:'Barlow',sans-serif;font-weight:700;display:flex;align-items:center;justify-content:center;color:#333}
+.qty-btn:hover{background:#e8e8e8}
+.qty-num{width:28px;text-align:center;font-size:.78rem;font-weight:600;border:none;outline:none;font-family:'Barlow',sans-serif}
+.btn-add{flex:1;background:var(--black);color:#fff;border:none;padding:.45rem .6rem;font-family:'Barlow',sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border-radius:3px;cursor:pointer;transition:background .15s}
+.btn-add:hover{background:#333}
+.btn-add.added{background:var(--green)}
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--black);color:#fff;padding:.6rem 1.4rem;border-radius:4px;font-size:.8rem;font-weight:600;z-index:9999;transition:transform .3s;white-space:nowrap;border-left:3px solid var(--gold)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.cart-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500}
+.cart-overlay.open{display:block}
+.cart-panel{position:fixed;top:0;right:-100%;width:100%;max-width:480px;height:100%;background:#fff;z-index:501;transition:right .3s;display:flex;flex-direction:column;box-shadow:-4px 0 20px rgba(0,0,0,.15)}
+.cart-panel.open{right:0}
+.cart-header{background:var(--black);padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.cart-header h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:#fff;text-transform:uppercase;letter-spacing:1px}
+.cart-close{background:transparent;border:none;color:rgba(255,255,255,.6);font-size:1.4rem;cursor:pointer;line-height:1;padding:.2rem}
+.cart-close:hover{color:#fff}
+.cart-body{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+.cart-empty{text-align:center;padding:3rem 1rem;color:var(--mid)}
+.cart-empty div{font-size:3rem;margin-bottom:.5rem}
+.cart-empty p{font-size:.9rem;line-height:1.6}
+.cart-item{display:flex;gap:.75rem;padding:.85rem 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.cart-item-img{width:64px;height:80px;object-fit:cover;border-radius:3px;background:#f5f5f5;flex-shrink:0}
+.cart-item-ph{width:64px;height:80px;background:#f5f5f5;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.8rem;color:#ddd}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;text-transform:uppercase;line-height:1.2;margin-bottom:.3rem}
+.cart-item-meta{font-size:.72rem;color:var(--mid);margin-bottom:.4rem;display:flex;flex-wrap:wrap;gap:.3rem}
+.cart-item-meta span{background:#f0f0f0;padding:2px 7px;border-radius:2px;font-weight:600;color:#555}
+.cart-item-price{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;color:var(--black)}
+.cart-item-remove{background:transparent;border:none;color:#ccc;cursor:pointer;font-size:1rem;padding:.2rem;flex-shrink:0;margin-top:.2rem}
+.cart-item-remove:hover{color:var(--red)}
+.cart-footer{padding:1.25rem 1.5rem;border-top:2px solid #eee;background:#fafafa;flex-shrink:0}
+.cart-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
+.cart-total-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--mid)}
+.cart-total-val{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:var(--black)}
+.btn-continuar{width:100%;background:transparent;color:var(--black);border:1.5px solid #ccc;padding:.7rem;font-family:'Barlow',sans-serif;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border-radius:3px;cursor:pointer;margin-bottom:.6rem;transition:all .2s}
+.btn-continuar:hover{border-color:var(--black);background:#f5f5f5}
+.btn-finalizar{width:100%;background:var(--green);color:#fff;border:none;padding:.8rem;font-family:'Barlow',sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border-radius:3px;cursor:pointer;transition:filter .15s}
+.btn-finalizar:hover{filter:brightness(1.1)}
+
+/* PERSONALIZAÇÃO */
+.custom-toggle{display:flex;align-items:center;gap:.5rem;margin-top:.5rem;cursor:pointer;user-select:none}
+.custom-toggle input[type=checkbox]{width:15px;height:15px;accent-color:var(--black);cursor:pointer;flex-shrink:0}
+.custom-toggle-label{font-size:.72rem;font-weight:600;color:#444;line-height:1.3}
+.custom-toggle-label em{color:var(--green);font-style:normal;font-weight:700}
+.custom-fields{display:none;margin-top:.5rem;gap:.4rem;flex-direction:column;background:#f8f8f8;border-radius:4px;padding:.6rem;border:1px solid #eee}
+.custom-fields.show{display:flex}
+.custom-preco-extra{font-size:.72rem;font-weight:700;color:var(--green);margin-bottom:.2rem}
+.custom-input{border:1px solid #ddd;border-radius:3px;padding:5px 8px;font-family:'Barlow',sans-serif;font-size:.72rem;color:#333;outline:none;width:100%}
+.custom-input:focus{border-color:#999}
+.custom-input::placeholder{color:#bbb}
+
+/* TABELA DE MEDIDAS INFANTIS */
+.btn-medidas{background:transparent;border:1px solid #ccc;color:#555;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:3px;cursor:pointer;font-family:'Barlow',sans-serif;text-transform:uppercase;letter-spacing:.4px;margin-top:.3rem;transition:all .15s}
+.btn-medidas:hover{border-color:#333;color:#111;background:#f5f5f5}
+.medidas-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9100;align-items:center;justify-content:center;padding:1rem}
+.medidas-overlay.open{display:flex}
+.medidas-box{background:#fff;border-radius:8px;overflow:hidden;max-width:400px;width:100%;box-shadow:0 8px 32px rgba(0,0,0,.25)}
+.medidas-header{background:var(--black);padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+.medidas-header h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;text-transform:uppercase;letter-spacing:1px}
+.medidas-close{background:transparent;border:none;color:rgba(255,255,255,.6);font-size:1.2rem;cursor:pointer}
+.medidas-close:hover{color:#fff}
+.medidas-table{width:100%;border-collapse:collapse;font-size:.78rem;font-family:'Barlow',sans-serif}
+.medidas-table thead tr{background:var(--black)}
+.medidas-table thead th{color:var(--gold);font-weight:700;text-transform:uppercase;font-size:.65rem;letter-spacing:.5px;padding:.55rem .75rem;text-align:center}
+.medidas-table tbody tr:nth-child(even){background:#f8f8f8}
+.medidas-table tbody tr:hover{background:#fff3cd}
+.medidas-table tbody td{padding:.5rem .75rem;text-align:center;color:#333;border-bottom:1px solid #eee}
+.medidas-table tbody td:first-child{font-weight:700;color:var(--black)}
+.medidas-note{font-size:.7rem;color:var(--mid);padding:.6rem .75rem;text-align:center;background:#f8f8f8;border-top:1px solid #eee}
+.cart-item{display:flex;gap:.75rem;padding:.85rem 0;border-bottom:1px solid var(--border);align-items:flex-start;flex-direction:column}
+.cart-item-top{display:flex;gap:.75rem;width:100%;align-items:flex-start}
+.cart-item-controls{display:flex;align-items:center;justify-content:space-between;width:100%;padding-top:.5rem;gap:.5rem;flex-wrap:wrap}
+.cart-edit-group{display:flex;align-items:center;gap:.4rem}
+.cart-edit-label{font-size:.65rem;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+.cart-sz-select{border:1px solid #ddd;border-radius:3px;padding:3px 6px;font-family:'Barlow',sans-serif;font-size:.72rem;font-weight:600;color:#333;cursor:pointer;outline:none;background:#fff}
+.cart-sz-select:focus{border-color:#999}
+.cart-qty-ctrl{display:flex;align-items:center;border:1px solid #ddd;border-radius:3px;overflow:hidden}
+.cart-qty-btn{background:#f5f5f5;border:none;width:24px;height:24px;font-size:.85rem;cursor:pointer;font-weight:700;color:#333;display:flex;align-items:center;justify-content:center}
+.cart-qty-btn:hover{background:#e8e8e8}
+.cart-qty-num{width:28px;text-align:center;font-size:.78rem;font-weight:700;border:none;outline:none;font-family:'Barlow',sans-serif;background:#fff}
+.cart-item-remove{background:transparent;border:1px solid #f5c6c6;color:#c0392b;cursor:pointer;font-size:.7rem;font-weight:700;padding:3px 8px;border-radius:3px;white-space:nowrap;font-family:'Barlow',sans-serif;transition:all .15s}
+.cart-item-remove:hover{background:#fdecea;border-color:#c0392b}
+.strip{background:var(--black);display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;margin-top:2rem}
+.strip-item{background:#161616;padding:1.5rem 1.75rem}
+.strip-item h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.3rem}
+.strip-item p{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.5}
+footer{background:var(--black);padding:2rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:start;margin-top:2rem}
+.footer-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:#fff;letter-spacing:3px;margin-bottom:.4rem}
+.footer-logo em{color:var(--gold);font-style:normal}
+footer p{font-size:.75rem;color:rgba(255,255,255,.35);line-height:1.7}
+.footer-right{text-align:right}
+.footer-right p{font-size:.72rem;color:rgba(255,255,255,.3);margin-bottom:.75rem}
+@media(max-width:600px){
+  .strip{grid-template-columns:1fr}
+  footer{grid-template-columns:1fr}.footer-right{text-align:left}
+  .hero h1{font-size:3rem}
+  .hero::before{font-size:10rem}
+  .btn-wpp{display:none}
+}
+
+/* BOTÃO FLUTUANTE WHATSAPP MOBILE */
+.btn-wpp-float{
+  display:none;
+  position:fixed;
+  bottom:5rem;
+  right:1rem;
+  z-index:498;
+  background:var(--green);
+  color:#fff;
+  border:none;
+  border-radius:50px;
+  padding:.6rem 1rem;
+  font-family:'Barlow',sans-serif;
+  font-size:.78rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  cursor:pointer;
+  box-shadow:0 3px 12px rgba(0,180,80,.5);
+  display:flex;
+  align-items:center;
+  gap:.4rem;
+  transition:transform .15s,box-shadow .15s;
+}
+.btn-wpp-float:hover{transform:scale(1.05);box-shadow:0 5px 18px rgba(0,180,80,.55)}
+.btn-wpp-float svg{width:18px;height:18px;flex-shrink:0}
+@media(min-width:601px){.btn-wpp-float{display:none!important}}
+
+/* BUSCA */
+.search-bar{background:#1a1a1a;padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:.75rem}
+.search-wrap{display:flex;align-items:center;background:#fff;border-radius:4px;overflow:hidden;flex:1;max-width:640px;border:2px solid transparent;transition:border-color .2s}
+.search-wrap:focus-within{border-color:var(--gold)}
+.search-icon{padding:0 .75rem;color:#aaa;font-size:1rem;flex-shrink:0}
+.search-input{border:none;outline:none;padding:.55rem .5rem .55rem 0;font-family:'Barlow',sans-serif;font-size:.88rem;color:#111;width:100%;background:transparent}
+.search-input::placeholder{color:#aaa}
+.search-clear{background:transparent;border:none;color:#aaa;cursor:pointer;padding:0 .75rem;font-size:1rem;display:none}
+.search-clear.show{display:block}
+.search-results-count{font-size:.75rem;color:rgba(255,255,255,.45);white-space:nowrap}
+.search-section{display:none;padding:1.5rem 1.5rem 3rem}
+.search-section.active{display:block}
+.no-results{text-align:center;padding:3rem 1rem;color:var(--mid)}
+.no-results div{font-size:2.5rem;margin-bottom:.5rem}
+.no-results p{font-size:.9rem}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9000;align-items:center;justify-content:center;padding:1rem}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:4px}
+.lightbox-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.15);border:none;color:#fff;width:40px;height:40px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lightbox-close:hover{background:rgba(255,255,255,.3)}
+.card-img img{cursor:zoom-in}
+
+/* CHECKOUT */
+.checkout-view{display:none;flex-direction:column;height:100%}
+.checkout-view.active{display:flex}
+.checkout-header{background:var(--black);padding:1.1rem 1.5rem;display:flex;align-items:center;gap:.75rem;flex-shrink:0}
+.checkout-back{background:transparent;border:none;color:rgba(255,255,255,.6);font-size:1rem;cursor:pointer;padding:.2rem .4rem}
+.checkout-back:hover{color:#fff}
+.checkout-header h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:#fff;text-transform:uppercase;letter-spacing:1px}
+.checkout-body{flex:1;overflow-y:auto;padding:1.25rem 1.5rem}
+.checkout-section-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;text-transform:uppercase;letter-spacing:.5px;color:#333;margin:1rem 0 .5rem;padding-bottom:.3rem;border-bottom:1px solid var(--border)}
+.checkout-section-title:first-child{margin-top:0}
+.checkout-field{margin-bottom:.75rem}
+.checkout-label{display:block;font-size:.72rem;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.3rem}
+.checkout-input{width:100%;border:1.5px solid #ddd;border-radius:4px;padding:.55rem .75rem;font-family:'Barlow',sans-serif;font-size:.85rem;color:#111;outline:none;transition:border-color .2s}
+.checkout-input:focus{border-color:var(--black)}
+.checkout-input::placeholder{color:#bbb}
+.pay-options{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.pay-opt{border:1.5px solid #ddd;border-radius:4px;padding:.6rem .75rem;cursor:pointer;display:flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:600;transition:all .2s;font-family:'Barlow',sans-serif;background:#fff}
+.pay-opt:hover{border-color:#999}
+.pay-opt.sel{border-color:var(--black);background:var(--black);color:#fff}
+.pay-opt input{display:none}
+.checkout-resumo{background:#f8f8f8;border-radius:4px;padding:.75rem;margin-top:.75rem}
+.checkout-resumo-title{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--mid);margin-bottom:.5rem}
+.checkout-resumo-item{font-size:.78rem;color:#444;padding:.2rem 0;border-bottom:1px solid #eee;display:flex;justify-content:space-between}
+.checkout-resumo-item:last-child{border:none}
+.checkout-total{display:flex;justify-content:space-between;align-items:baseline;margin-top:.75rem;padding-top:.75rem;border-top:2px solid var(--black)}
+.checkout-total-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--mid)}
+.checkout-total-val{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem}
+.checkout-footer{padding:1.25rem 1.5rem;border-top:2px solid #eee;background:#fafafa;flex-shrink:0}
+.btn-enviar-wpp{width:100%;background:var(--green);color:#fff;border:none;padding:.85rem;font-family:'Barlow',sans-serif;font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border-radius:4px;cursor:pointer;transition:filter .15s}
+.btn-enviar-wpp:hover{filter:brightness(1.1)}
+
+/* FILTROS E ORDENAÇÃO */
+.controls-bar{margin-bottom:1.25rem}
+.filtros-wrap{display:flex;gap:.4rem;overflow-x:auto;scrollbar-width:none;padding:.1rem .05rem .5rem;-webkit-overflow-scrolling:touch}
+.filtros-wrap::-webkit-scrollbar{display:none}
+.filtro-btn{background:#f0f0f0;border:2px solid transparent;color:#555;font-family:'Barlow',sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:.45rem 1rem;border-radius:20px;cursor:pointer;transition:all .18s;white-space:nowrap;flex-shrink:0;min-height:36px;display:flex;align-items:center}
+.filtro-btn:hover{background:#e0e0e0;color:#111}
+.filtro-btn.ativo{background:var(--black);color:#fff;border-color:var(--black)}
+.sort-row{display:flex;align-items:center;gap:.5rem;margin-top:.4rem}
+.sort-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#aaa}
+.sort-sel{border:1.5px solid #ddd;border-radius:8px;padding:.35rem .65rem;font-family:'Barlow',sans-serif;font-size:.72rem;font-weight:600;color:#444;cursor:pointer;outline:none;background:#fff;min-height:34px}
+.sort-sel:focus{border-color:#999}
+@media(max-width:600px){
+  .filtro-btn{font-size:.75rem;padding:.5rem 1.1rem;min-height:40px;border-radius:20px}
+  .sort-sel{font-size:.72rem}
+}
+
+.liga-nav-wrap{position:sticky;top:58px;z-index:199;background:var(--black);border-bottom:2px solid #222}
+.liga-nav{display:flex;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;min-width:0;padding:0}
+@media(max-width:600px){
+  .section{padding:1rem .75rem 3rem}
+  .section-title{font-size:1.4rem}
+}
+.btn-fav{position:absolute;top:8px;right:8px;background:rgba(255,255,255,.92);border:none;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:all .18s;box-shadow:0 1px 4px rgba(0,0,0,.15);z-index:3}
+.btn-fav:hover{transform:scale(1.12)}
+.btn-fav.favoritado{background:#fff0f0}
+
+/* PAINEL FAVORITOS */
+.fav-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500}
+.fav-overlay.open{display:block}
+.fav-panel{position:fixed;top:0;left:-100%;width:100%;max-width:480px;height:100%;background:#fff;z-index:501;transition:left .3s;display:flex;flex-direction:column;box-shadow:4px 0 20px rgba(0,0,0,.15)}
+.fav-panel.open{left:0}
+.fav-header{background:var(--black);padding:1.1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.fav-header h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;color:#fff;text-transform:uppercase;letter-spacing:1px}
+.fav-close{background:transparent;border:none;color:rgba(255,255,255,.6);font-size:1.4rem;cursor:pointer}
+.fav-close:hover{color:#fff}
+.fav-body{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+.fav-empty{text-align:center;padding:3rem 1rem;color:var(--mid)}
+.fav-empty div{font-size:3rem;margin-bottom:.5rem}
+.fav-item{display:flex;gap:.75rem;padding:.85rem 0;border-bottom:1px solid var(--border);align-items:center}
+.fav-item-img{width:56px;height:70px;object-fit:cover;border-radius:4px;background:#f5f5f5;flex-shrink:0}
+.fav-item-ph{width:56px;height:70px;background:#f5f5f5;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#ddd;flex-shrink:0}
+.fav-item-info{flex:1;min-width:0}
+.fav-item-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.95rem;text-transform:uppercase;line-height:1.2;margin-bottom:.2rem}
+.fav-item-price{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.05rem;color:var(--black)}
+.fav-item-actions{display:flex;gap:.4rem;margin-top:.4rem}
+.btn-fav-add{background:var(--black);color:#fff;border:none;padding:.3rem .7rem;font-size:.68rem;font-weight:700;font-family:'Barlow',sans-serif;text-transform:uppercase;letter-spacing:.4px;border-radius:3px;cursor:pointer}
+.btn-fav-remove{background:transparent;border:1.5px solid #ddd;color:#999;padding:.3rem .6rem;font-size:.68rem;font-weight:700;font-family:'Barlow',sans-serif;border-radius:3px;cursor:pointer}
+.btn-fav-remove:hover{border-color:var(--red);color:var(--red)}
+.btn-fav-nav{background:transparent;border:1.5px solid rgba(255,255,255,.3);color:#fff;padding:.4rem .9rem;border-radius:3px;font-family:'Barlow',sans-serif;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;cursor:pointer;display:flex;align-items:center;gap:.4rem;transition:all .2s;position:relative}
+.btn-fav-nav:hover{border-color:#fff}
+.fav-badge{background:var(--red);color:#fff;font-size:.6rem;font-weight:900;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;position:absolute;top:-6px;right:-6px}
+.fav-badge.hidden{display:none}
+.bloco-titulo{padding:.75rem 0 .4rem;margin-top:1.25rem;margin-bottom:.1rem;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:.5rem}
+.bloco-titulo:first-child{margin-top:0}
+.bloco-titulo h3{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;text-transform:uppercase;letter-spacing:.8px;color:#555}
+.bloco-titulo .bloco-flag{font-size:1.1rem}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">ESTÁDIO <em>96</em></div>
+  <div class="nav-right">
+    <button class="btn-fav-nav" onclick="abrirFavoritos()">♡ Favoritos<span class="fav-badge hidden" id="favBadge">0</span></button>
+    <button class="btn-cart" onclick="abrirCarrinho()">
+      🛒 Carrinho
+      <span class="cart-badge hidden" id="cartBadge">0</span>
+    </button>
+    <button class="btn-wpp" onclick="openWpp('Olá! Vi o catálogo da Estádio 96 e quero fazer um pedido!')">💬 WhatsApp</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">⚽ Coleção Oficial 2025 / 2026</div>
+  <h1>Copa do<br><span>Mundo 2026</span></h1>
+  <p>As melhores camisas importadas do mundo. Seleções, clubes e clássicos retrô na palma da sua mão.</p>
+  <div class="hero-flags">🇧🇷🇦🇷🇫🇷🏴󠁧󠁢󠁥󠁮󠁧󠁿🇩🇪🇵🇹🇪🇸🇮🇹🇳🇱🇺🇾</div>
+</div>
+
+<div class="liga-nav-wrap">
+<div class="liga-nav">
+  <button class="ltab" onclick="showSection('inicio',this)" id="tab-inicio"><span class="flag">🏠</span> Início</button>
+  <button class="ltab" onclick="showSection('selecao_brasileira',this)"><span class="flag">🇧🇷</span> Seleção Brasileira</button>
+  <button class="ltab" onclick="showSection('copa2026',this)"><span class="flag">🌍</span> Copa 2026</button>
+  <button class="ltab" onclick="showSection('brasileiro',this)"><span class="flag">🇧🇷</span> Brasileirão</button>
+  <button class="ltab" onclick="showSection('premier',this)"><span class="flag">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> Premier League</button>
+  <button class="ltab" onclick="showSection('laliga',this)"><span class="flag">🇪🇸</span> La Liga</button>
+  <button class="ltab" onclick="showSection('bundesliga',this)"><span class="flag">🇩🇪</span> Bundesliga</button>
+  <button class="ltab" onclick="showSection('seriea',this)"><span class="flag">🇮🇹</span> Serie A</button>
+  <button class="ltab" onclick="showSection('ligue1',this)"><span class="flag">🇫🇷</span> Ligue 1</button>
+  <button class="ltab" onclick="showSection('retro',this)"><span class="flag">⭐</span> Retrô</button>
+</div>
+</div>
+
+<!-- BARRA DE PESQUISA -->
+<div class="search-bar">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="searchInput" type="text" placeholder="Buscar camisa por nome, time ou seleção..." oninput="pesquisar(this.value)">
+    <button class="search-clear" id="searchClear" onclick="limparBusca()">✕</button>
+  </div>
+  <span class="search-results-count" id="searchCount"></span>
+</div>
+
+<!-- SEÇÃO DE RESULTADOS DA BUSCA -->
+<div class="search-section" id="sec-search">
+  <div class="section-header">
+    <h2 class="section-title">🔍 Resultados da busca</h2>
+    <span class="prod-count" id="searchResultCount"></span>
+  </div>
+  <div class="grid" id="searchGrid"></div>
+</div>
+
+<div id="sections"></div>
+
+<div class="strip">
+  <div class="strip-item">
+    <h3>🚚 Frete Grátis</h3>
+    <p><strong style="color:#fff">Região Metropolitana de João Pessoa:</strong> frete grátis em todos os pedidos.<br><br><strong style="color:#fff">Outras cidades:</strong> frete grátis a partir de 4 peças. Prazo de 20 a 30 dias.</p>
+  </div>
+  <div class="strip-item">
+    <h3>👕 Camisas Importadas</h3>
+    <p>Nossas camisas são réplicas de alta qualidade.</p>
+  </div>
+  <div class="strip-item">
+    <h3>💳 Formas de Pagamento</h3>
+    <p>Aceitamos <strong style="color:#fff">PIX</strong> com desconto e <strong style="color:#fff">Cartão de Crédito</strong> em até 12x. Combine na hora do pedido.</p>
+  </div>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-logo">ESTÁDIO <em>96</em></div>
+    <p>Camisas importadas de futebol.<br>Entregamos em todo o Brasil.</p>
+  </div>
+  <div class="footer-right">
+    <p>Dúvidas? Fale conosco:</p>
+    <button class="btn-wpp" onclick="openWpp('Olá! Quero informações sobre as camisas da Estádio 96.')">💬 Chamar no WhatsApp</button>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<!-- BOTÃO FLUTUANTE WHATSAPP (mobile) -->
+<button class="btn-wpp-float" onclick="openWpp('Olá! Vi o catálogo da Estádio 96 e quero fazer um pedido!')">
+  <svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.556 4.121 1.527 5.847L.057 23.882l6.198-1.625A11.934 11.934 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.376l-.359-.214-3.722.976.993-3.628-.235-.373A9.818 9.818 0 012.182 12c0-5.421 4.397-9.818 9.818-9.818 5.421 0 9.818 4.397 9.818 9.818 0 5.421-4.397 9.818-9.818 9.818z"/>
+  </svg>
+  WhatsApp
+</button>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="fecharLightbox()">
+  <button class="lightbox-close" onclick="fecharLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- MODAL MEDIDAS INFANTIS -->
+<div class="medidas-overlay" id="medidasOverlay" onclick="fecharMedidas(event)">
+  <div class="medidas-box">
+    <div class="medidas-header">
+      <h3>📏 Tabela de Medidas</h3>
+      <button class="medidas-close" onclick="fecharMedidasBtn()">✕</button>
+    </div>
+    <table class="medidas-table">
+      <thead>
+        <tr>
+          <th>Idade</th>
+          <th>Altura (cm)</th>
+          <th>Compr. (cm)</th>
+          <th>Largura (cm)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>3–4 anos</td><td>95–105</td><td>44</td><td>35</td></tr>
+        <tr><td>4–5 anos</td><td>105–115</td><td>47</td><td>37</td></tr>
+        <tr><td>5–6 anos</td><td>115–125</td><td>50</td><td>39</td></tr>
+        <tr><td>6–7 anos</td><td>125–135</td><td>53</td><td>41</td></tr>
+        <tr><td>8–9 anos</td><td>135–145</td><td>56</td><td>43</td></tr>
+        <tr><td>10–11 anos</td><td>145–155</td><td>59</td><td>45</td></tr>
+        <tr><td>12–13 anos</td><td>155–165</td><td>62</td><td>47</td></tr>
+      </tbody>
+    </table>
+    <p class="medidas-note">Comprimento = do ombro à barra | Largura = de axilar a axilar</p>
+  </div>
+</div>
+
+<!-- MODAL MEDIDAS TORCEDOR MASCULINO -->
+<div class="medidas-overlay" id="medidasTorcedorOverlay" onclick="fecharMedidasTorcedor(event)">
+  <div class="medidas-box">
+    <div class="medidas-header">
+      <h3>📏 Tabela de Medidas</h3>
+      <button class="medidas-close" onclick="document.getElementById('medidasTorcedorOverlay').classList.remove('open')">✕</button>
+    </div>
+    <table class="medidas-table">
+      <thead>
+        <tr>
+          <th>Tamanho</th>
+          <th>Peito (cm)</th>
+          <th>Compr. (cm)</th>
+          <th>Ombros (cm)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>P</td><td>50</td><td>72</td><td>42</td></tr>
+        <tr><td>M</td><td>52</td><td>74</td><td>44</td></tr>
+        <tr><td>G</td><td>54</td><td>76</td><td>46</td></tr>
+        <tr><td>GG</td><td>56</td><td>78</td><td>48</td></tr>
+        <tr><td>2GG</td><td>58</td><td>80</td><td>50</td></tr>
+        <tr><td>3GG</td><td>60</td><td>82</td><td>52</td></tr>
+      </tbody>
+    </table>
+    <p class="medidas-note">Medidas em centímetros. Versão Torcedor Masculino.</p>
+  </div>
+</div>
+
+<!-- MODAL MEDIDAS FEMININO -->
+<div class="medidas-overlay" id="medidasFemininoOverlay" onclick="fecharMedidasFeminino(event)">
+  <div class="medidas-box">
+    <div class="medidas-header">
+      <h3>📏 Tabela de Medidas</h3>
+      <button class="medidas-close" onclick="document.getElementById('medidasFemininoOverlay').classList.remove('open')">✕</button>
+    </div>
+    <table class="medidas-table">
+      <thead>
+        <tr>
+          <th>Tamanho</th>
+          <th>Compr. (cm)</th>
+          <th>Largura (cm)</th>
+          <th>Altura (cm)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>P</td><td>61–63</td><td>40–41</td><td>150–160</td></tr>
+        <tr><td>M</td><td>63–66</td><td>41–44</td><td>160–165</td></tr>
+        <tr><td>G</td><td>66–69</td><td>44–47</td><td>165–170</td></tr>
+        <tr><td>GG</td><td>69–71</td><td>47–50</td><td>170–175</td></tr>
+        <tr><td>2GG</td><td>71–73</td><td>50–53</td><td>175–180</td></tr>
+      </tbody>
+    </table>
+    <p class="medidas-note">Comprimento = do ombro à barra | Largura = de axilar a axilar</p>
+  </div>
+</div>
+
+<!-- MODAL MEDIDAS BODY INFANTIL -->
+<div class="medidas-overlay" id="medidasBodyOverlay" onclick="fecharMedidasBody(event)">
+  <div class="medidas-box">
+    <div class="medidas-header">
+      <h3>📏 Tabela de Medidas</h3>
+      <button class="medidas-close" onclick="document.getElementById('medidasBodyOverlay').classList.remove('open')">✕</button>
+    </div>
+    <table class="medidas-table">
+      <thead>
+        <tr>
+          <th>Tamanho</th>
+          <th>Altura (cm)</th>
+          <th>Peso (kg)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>9 meses</td><td>67–72</td><td>7,5–9,3</td></tr>
+        <tr><td>12 meses</td><td>72–78</td><td>9,3–11,1</td></tr>
+      </tbody>
+    </table>
+    <p class="medidas-note">Body Infantil. Medidas de referência para escolha do tamanho.</p>
+  </div>
+</div>
+
+<!-- TABELA JOGADOR -->
+<div class="medidas-overlay" id="medidasJogadorOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="medidas-box">
+    <div class="medidas-header">
+      <h3>📏 Medidas — Jogador</h3>
+      <button class="medidas-close" onclick="document.getElementById('medidasJogadorOverlay').classList.remove('open')">✕</button>
+    </div>
+    <table class="medidas-table">
+      <thead>
+        <tr><th>Tamanho (BR)</th><th>Peito (cm)</th><th>Comprimento (cm)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>P</td><td>48</td><td>72</td></tr>
+        <tr><td>M</td><td>50</td><td>74</td></tr>
+        <tr><td>G</td><td>52</td><td>76</td></tr>
+        <tr><td>GG</td><td>54</td><td>78</td></tr>
+        <tr><td>2GG</td><td>56</td><td>80</td></tr>
+        <tr><td>3GG</td><td>58</td><td>82</td></tr>
+      </tbody>
+    </table>
+    <p class="medidas-note">Camisa versão Jogador. Corte mais slim — se tiver dúvida, prefira um tamanho acima.</p>
+  </div>
+</div>
+
+<!-- MODAL COMPARTILHAR -->
+<div class="medidas-overlay" id="shareOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="medidas-box" style="max-width:340px">
+    <div class="medidas-header">
+      <h3>🔗 Compartilhar</h3>
+      <button class="medidas-close" onclick="document.getElementById('shareOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div style="padding:1.25rem">
+      <p style="font-size:.8rem;color:#555;margin-bottom:.75rem">Copie o link abaixo para compartilhar este produto:</p>
+      <div style="display:flex;gap:.5rem;align-items:center">
+        <input id="shareLinkInput" type="text" readonly style="flex:1;border:1.5px solid #ddd;border-radius:4px;padding:.4rem .6rem;font-size:.75rem;font-family:'Barlow',sans-serif;color:#333;outline:none;background:#f9f9f9">
+        <button onclick="copiarLink()" style="background:var(--black);color:#fff;border:none;padding:.42rem .85rem;border-radius:4px;font-family:'Barlow',sans-serif;font-size:.75rem;font-weight:700;cursor:pointer;white-space:nowrap" id="shareCopyBtn">Copiar</button>
+      </div>
+      <p style="font-size:.72rem;color:#aaa;margin-top:.6rem">O cliente vai ver a página e poderá buscar o produto pelo nome.</p>
+    </div>
+  </div>
+</div>
+
+<div class="fav-overlay" id="favOverlay" onclick="fecharFavoritos()"></div>
+<div class="fav-panel" id="favPanel">
+  <div class="fav-header">
+    <h2>♡ Favoritos</h2>
+    <button class="fav-close" onclick="fecharFavoritos()">✕</button>
+  </div>
+  <div class="fav-body" id="favBody"></div>
+</div>
+
+<div class="cart-overlay" id="cartOverlay" onclick="fecharCarrinho()"></div>
+<div class="cart-panel" id="cartPanel">
+
+  <!-- TELA 1: CARRINHO -->
+  <div id="cartView" style="display:flex;flex-direction:column;height:100%">
+    <div class="cart-header">
+      <h2>🛒 Carrinho</h2>
+      <button class="cart-close" onclick="fecharCarrinho()">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody"></div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total-row">
+        <span class="cart-total-label">Total do pedido</span>
+        <span class="cart-total-val" id="cartTotal">R$ 0,00</span>
+      </div>
+      <button class="btn-continuar" onclick="fecharCarrinho()">← Continuar comprando</button>
+      <button class="btn-finalizar" onclick="irParaCheckout()">Fechar pedido →</button>
+    </div>
+  </div>
+
+  <!-- TELA 2: CHECKOUT -->
+  <div class="checkout-view" id="checkoutView">
+    <div class="checkout-header">
+      <button class="checkout-back" onclick="voltarCarrinho()">←</button>
+      <h2>📋 Fechar Pedido</h2>
+    </div>
+    <div class="checkout-body">
+      <p class="checkout-section-title">📦 Entrega</p>
+      <div class="checkout-field">
+        <label class="checkout-label">Nome completo</label>
+        <input class="checkout-input" id="co-nome" type="text" placeholder="Seu nome completo">
+      </div>
+      <div class="checkout-field">
+        <label class="checkout-label">WhatsApp / Telefone</label>
+        <input class="checkout-input" id="co-tel" type="tel" placeholder="(83) 99999-9999">
+      </div>
+      <div class="checkout-field">
+        <label class="checkout-label">Endereço completo</label>
+        <input class="checkout-input" id="co-end" type="text" placeholder="Rua, número, bairro">
+      </div>
+      <div class="checkout-field">
+        <label class="checkout-label">Cidade / Estado</label>
+        <input class="checkout-input" id="co-cidade" type="text" placeholder="João Pessoa / PB">
+      </div>
+      <div class="checkout-field">
+        <label class="checkout-label">CEP</label>
+        <input class="checkout-input" id="co-cep" type="text" placeholder="58000-000">
+      </div>
+      <p class="checkout-section-title">💳 Forma de Pagamento</p>
+      <div class="pay-options">
+        <label class="pay-opt" id="pay-pix" onclick="selecionarPag('PIX')">
+          <input type="radio" name="pag" value="PIX"> 💰 PIX
+        </label>
+        <label class="pay-opt" id="pay-cartao" onclick="selecionarPag('Cartão')">
+          <input type="radio" name="pag" value="Cartão"> 💳 Cartão
+        </label>
+      </div>
+      <p class="checkout-section-title">🧾 Resumo do pedido</p>
+      <div class="checkout-resumo" id="checkoutResumo"></div>
+      <div class="checkout-total">
+        <span class="checkout-total-label">Total</span>
+        <span class="checkout-total-val" id="checkoutTotalVal"></span>
+      </div>
+    </div>
+    <div class="checkout-footer">
+      <button class="btn-enviar-wpp" onclick="enviarPedidoWpp()">💬 Enviar pedido no WhatsApp</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const WHATSAPP = "5583998111629";
+let carrinho = [];
+
+const ligas = {
+  copa2026:{nome:"Copa do Mundo 2026",flag:"🌍",genero:"Masculino",produtos:[
+    {id:1,nome:"Brasil Home 2026",preco:189.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:2,nome:"Argentina Home 2026",preco:189.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:3,nome:"França Home 2026",preco:189.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:4,nome:"Portugal Home 2026",preco:189.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:5,nome:"Alemanha Home 2026",preco:189.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:6,nome:"Espanha Home 2026",preco:189.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:7,nome:"Inglaterra Home 2026",preco:189.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:8,nome:"Itália Home 2026",preco:189.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:9,nome:"Holanda Home 2026",preco:189.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:10,nome:"Uruguai Home 2026",preco:179.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:11,nome:"Brasil Away 2026",preco:189.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:12,nome:"Argentina Away 2026",preco:189.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:13,nome:"México Home 2026",preco:179.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:14,nome:"Estados Unidos Home 2026",preco:179.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:15,nome:"Marrocos Home 2026",preco:169.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:16,nome:"Japão Home 2026",preco:169.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:17,nome:"Coreia do Sul Home 2026",preco:169.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:18,nome:"Bélgica Home 2026",preco:179.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:19,nome:"Croácia Home 2026",preco:169.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:20,nome:"Senegal Home 2026",preco:169.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:21,nome:"Brasil I 2026",preco:167.00,img:"https://i.ibb.co/LdSBbKYq/c4a18a17.jpg",badge:"jogador",sizes:["P","M","G","GG","2GG","3GG"],jogador:true},
+    {id:22,nome:"Brasil II 2026",preco:167.00,img:"https://i.ibb.co/93rQ2P7M/c91a9d27.jpg",badge:"jogador",sizes:["P","M","G","GG","2GG","3GG"],jogador:true},
+    {id:23,nome:"Brasil II 2026",preco:139.00,imgs:["https://i.ibb.co/cKhQrJ4R/ccb38fb5.jpg","https://i.ibb.co/fVPcctMC/bcb16669.jpg","https://i.ibb.co/5WCH1cyW/9a9a73c2.jpg","https://i.ibb.co/sdmQdRzs/4e96a4db.jpg","https://i.ibb.co/6Rqr8jJn/08321cd3.jpg"],badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:24,nome:"Brasil I 2026",preco:139.00,imgs:["https://i.ibb.co/3YmVrdH5/e7f45523.jpg","https://i.ibb.co/8n1vFqC7/56cdb369.jpg","https://i.ibb.co/C3vLCSL0/f017bbdf.jpg","https://i.ibb.co/S4KQXVkc/5822e92a.jpg","https://i.ibb.co/4RLkHH10/f620221a.jpg"],badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:25,nome:"Brasil I 2025",preco:139.00,img:"https://i.ibb.co/JFGHKz0p/74560fd4.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:26,nome:"Brasil II 2026 Feminina",preco:139.00,img:"https://i.ibb.co/4RD0SW3n/0e4179fd.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG"],feminino:true},
+    {id:27,nome:"Brasil I 2026 Feminina",preco:139.00,img:"https://i.ibb.co/XkZwgT6X/bd00a13f.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG"],feminino:true},
+    {id:28,nome:"Brasil II 2026 Infantil (Conjunto)",preco:139.00,img:"https://i.ibb.co/G4rTNMCS/02ebd05f.jpg",badge:"kids",sizes:["3-4","4-5","5-6","6-7","8-9","10-11","12-13"],kids:true},
+    {id:29,nome:"Brasil I 2026 Infantil (Conjunto)",preco:149.00,img:"https://i.ibb.co/B9GLsjq/55df7afd.jpg",badge:"kids",sizes:["3-4","4-5","5-6","6-7","8-9","10-11","12-13"],kids:true},
+    {id:30,nome:"Brasil Body Infantil",preco:117.00,img:"https://i.ibb.co/bgwtT1cC/fbffc8db.jpg",badge:"kids",sizes:["9 meses","12 meses"],body:true},
+    {id:32,nome:"Argentina II 2026",preco:139.00,img:"https://i.ibb.co/LfSDngw/f9c25935.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:33,nome:"Argentina I pré-jogo 2026",preco:139.00,img:"https://i.ibb.co/fd2y7mYQ/0cdabae7.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:34,nome:"Alemanha II 2026",preco:139.00,img:"https://i.ibb.co/3mQ1528v/baba3c5e.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:35,nome:"Bélgica I 2026",preco:139.00,img:"https://i.ibb.co/HTG0HmqY/d92aee1c.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:36,nome:"Bélgica II 2026",preco:139.00,img:"https://i.ibb.co/TD9PzXMc/94ce9455.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:37,nome:"Croácia I 2026",preco:139.00,img:"https://i.ibb.co/nNVcZVpr/c87c6491.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:38,nome:"Egito II 2026",preco:139.00,img:"https://i.ibb.co/hx4Y7sRv/1737b3a5.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:39,nome:"Espanha I pré-jogo 2026",preco:139.00,img:"https://i.ibb.co/1JpdnsbK/16122305.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:40,nome:"Espanha II pré-jogo 2026",preco:139.00,img:"https://i.ibb.co/d4xd4hR5/edfdf559.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:41,nome:"Gana I 2026",preco:139.00,img:"https://i.ibb.co/GQNTdmf8/e9045c1c.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:42,nome:"Inglaterra I 2026",preco:139.00,img:"https://i.ibb.co/F4TZJWFy/62df0c0b.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:43,nome:"Itália I 2026",preco:139.00,img:"https://i.ibb.co/wr7WjyCW/2cfae345.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:44,nome:"Itália II 2026",preco:139.00,img:"https://i.ibb.co/BHyyYJVC/32309986.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:45,nome:"Marrocos I 2026",preco:139.00,img:"https://i.ibb.co/2Y0jVwxL/c95db2de.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:46,nome:"México II 2026",preco:139.00,img:"https://i.ibb.co/3y14Mbgw/Mens-Mexico-202526-Away-Jersey.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:47,nome:"Portugal II 2026",preco:139.00,img:"https://i.ibb.co/HTfZWxr6/8c6f835f.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:48,nome:"República Tcheca I 2026",preco:139.00,img:"https://i.ibb.co/CpTGT43D/157a7e5a.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:49,nome:"Argélia II 2026",preco:139.00,img:"https://i.ibb.co/0ppnqKJq/6f6e8eaa.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:50,nome:"Ucrânia I 2026",preco:139.00,img:"https://i.ibb.co/v6CkfK1r/5c73d4c9.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:51,nome:"Alemanha I 2026",preco:139.00,img:"https://i.ibb.co/p6VY9y0Z/Mens-Germany-202627-Away-Jersey.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:52,nome:"Portugal I 2026",preco:139.00,img:"https://i.ibb.co/tMJgc9rM/c0116eb8.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:53,nome:"Portugal III 2026",preco:139.00,img:"https://i.ibb.co/vCNTQJS7/f495708c.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:54,nome:"Suécia I 2026",preco:139.00,img:"https://i.ibb.co/dJt8nbhp/92ac99c0.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:55,nome:"Senegal I 2026",preco:139.00,img:"https://i.ibb.co/ksf4jSd1/64d2f96c.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:56,nome:"Espanha I 2026",preco:139.00,img:"https://i.ibb.co/97GbW9Q/347044fe.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:57,nome:"Alemanha I 2026",preco:139.00,img:"https://i.ibb.co/qYsJqCk2/70fb7a9a.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:58,nome:"México I 2026",preco:139.00,img:"https://i.ibb.co/KzqdQxgS/dd5913f6.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:59,nome:"Argentina I 2026",preco:139.00,img:"https://i.ibb.co/DH04Vj6J/1fa03f2c.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:60,nome:"Holanda II 2026",preco:139.00,img:"https://i.ibb.co/VpHhS5Zr/284df93f.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:61,nome:"Estados Unidos I 2026",preco:139.00,img:"https://i.ibb.co/sdCXykR5/7fd9ff37.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:62,nome:"Canadá I 2026",preco:139.00,img:"https://i.ibb.co/S4Wgqb7R/3f5aa706.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:63,nome:"Short I Brasil I 2025",preco:107.00,img:"https://i.ibb.co/Lh9tr1Qb/524a0201.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:64,nome:"Short I Brasil II 2025",preco:107.00,img:"https://i.ibb.co/Lz51jg8X/f4fc474d.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:65,nome:"Camisa Treino I Colombia 2026",preco:139.00,img:"https://i.ibb.co/p6KbhKpR/1df9f527.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:66,nome:"Holanda I 2026",preco:139.00,img:"https://i.ibb.co/DPcmf00V/778d449f.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:67,nome:"Espanha II 2026",preco:139.00,img:"https://i.ibb.co/dw3zzn4H/b4f7d15b.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:68,nome:"Brasil Goleiro 2026",preco:139.00,img:"https://i.ibb.co/xPcL0hc/5413a1b8.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:69,nome:"Colombia II 2026",preco:139.00,img:"https://i.ibb.co/rGDjb3DQ/03ee4f6a.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:71,nome:"Alemanha Treino I 2026",preco:139.00,img:"https://i.ibb.co/qYG0CqTg/0e59354d.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:72,nome:"Noruega I 2026",preco:139.00,img:"https://i.ibb.co/0RL5RnLK/1deb3ff4.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:73,nome:"Estados Unidos II 2026",preco:139.00,img:"https://i.ibb.co/xn93zmk/3ea72bff.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:74,nome:"Equador I 2026",preco:139.00,img:"https://i.ibb.co/VWGSDDXW/0c5fd33d.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:75,nome:"Jamaica I 2026",preco:139.00,img:"https://i.ibb.co/jZrLm8p0/11f8fda8.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:76,nome:"Grécia I 2026",preco:139.00,img:"https://i.ibb.co/S45HFtdk/ec3dfd09.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:77,nome:"Jamaica Edição Especial 25/26",preco:139.00,img:"https://i.ibb.co/93kPdVh1/7f7d1424.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:78,nome:"Jamaica II 2026",preco:139.00,img:"https://i.ibb.co/sdc73bN4/Jamaica.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:79,nome:"Argentina Terrance 2026",preco:149.00,imgs:["https://i.ibb.co/4ZKvqsGf/b8981ec2.jpg","https://i.ibb.co/vCgtN03G/f69d01e8.jpg","https://i.ibb.co/ksTYv1dp/cec2693b.jpg","https://i.ibb.co/jkpqgCCd/24f8a5fa.jpg","https://i.ibb.co/PzcmVnrs/0b506f3d.jpg"],badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:701,nome:"Brasil Feminino Home 2026",preco:179.90,img:"",badge:"new",sizes:["PP","P","M","G","GG","2GG","3GG"]},
+    {id:702,nome:"Brasil Feminino Away 2026",preco:179.90,img:"",badge:"new",sizes:["PP","P","M","G","GG","2GG","3GG"]},
+    {id:703,nome:"Argentina Feminino Home 2026",preco:179.90,img:"",badge:"new",sizes:["PP","P","M","G","GG","2GG","3GG"]},
+    {id:704,nome:"França Feminino Home 2026",preco:179.90,img:"",badge:"new",sizes:["PP","P","M","G","GG","2GG","3GG"]},
+    {id:705,nome:"Espanha Feminino Home 2026",preco:179.90,img:"",badge:"new",sizes:["PP","P","M","G","GG","2GG","3GG"]},
+    {id:706,nome:"Inglaterra Feminino Home 2026",preco:169.90,img:"",badge:"",sizes:["PP","P","M","G","GG","2GG","3GG"]},
+  ]},
+  brasileiro:{nome:"Brasileirão",flag:"🇧🇷",genero:"Masculino",produtos:[
+    {id:101,nome:"Flamengo Home 2025",preco:159.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:102,nome:"Flamengo Away 2025",preco:159.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:103,nome:"Palmeiras Home 2025",preco:159.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:104,nome:"Corinthians Home 2025",preco:159.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:105,nome:"São Paulo Home 2025",preco:159.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:106,nome:"Santos Home 2025",preco:149.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:107,nome:"Atlético Mineiro 2025",preco:149.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:108,nome:"Cruzeiro Home 2025",preco:149.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:109,nome:"Vasco Home 2025",preco:149.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:110,nome:"Botafogo Home 2025",preco:149.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:707,nome:"Flamengo Feminino 2025",preco:149.90,img:"",badge:"",sizes:["PP","P","M","G","GG","2GG","3GG"]},
+    {id:708,nome:"Palmeiras Feminino 2025",preco:149.90,img:"",badge:"",sizes:["PP","P","M","G","GG","2GG","3GG"]},
+    {id:709,nome:"Corinthians Feminino 2025",preco:149.90,img:"",badge:"",sizes:["PP","P","M","G","GG","2GG","3GG"]},
+    {id:111,nome:"Corinthians II 25/26",preco:139.00,img:"https://i.ibb.co/FL15160F/cb74e164.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:112,nome:"Corinthians I 25/26",preco:139.00,img:"https://i.ibb.co/hJpVF8Nh/8071e057.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:113,nome:"Sport Recife I 25/26",preco:139.00,img:"https://i.ibb.co/wh1ssqft/0ec12532.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:114,nome:"Sport Recife I 24/25",preco:139.00,img:"https://i.ibb.co/JwBw8JNN/7d02ebbd.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:115,nome:"Santa Cruz I 25/26",preco:139.00,img:"https://i.ibb.co/qYZ2LgMW/cdabcdbd.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:116,nome:"Santa Cruz II 25/26",preco:139.00,img:"https://i.ibb.co/hFhBM2Lm/af6e8d2d.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:117,nome:"Palmeiras I 26/27",preco:139.00,img:"https://i.ibb.co/TBtRNrkr/e8347f74.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:118,nome:"Palmeiras III 25/26",preco:139.00,img:"https://i.ibb.co/WWn0gZDh/a7ca6288.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:119,nome:"Sport Recife II 25/26",preco:139.00,img:"https://i.ibb.co/XrvCsC9H/1bd7ceb3.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:120,nome:"Palmeiras II 26/27",preco:139.00,img:"https://i.ibb.co/0jJhbP00/45481e89.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:121,nome:"Flamengo I 26/27",preco:139.00,img:"https://i.ibb.co/xKVPTyGc/902be375.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:122,nome:"Vasco II 26/27",preco:139.00,img:"https://i.ibb.co/pjrRYxYk/6e305204.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:123,nome:"São Paulo I 26/27",preco:139.00,img:"https://i.ibb.co/qLVRPtwy/37b85a4a.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:124,nome:"Flamengo II 25/26",preco:139.00,img:"https://i.ibb.co/rfLv5qQ2/0336c77a.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:125,nome:"Flamengo Copa do Mundo de Clubes 2025",preco:167.00,img:"https://i.ibb.co/JRgFT6Mz/8db1a53d.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:126,nome:"Flamengo III 25/26",preco:139.00,img:"https://i.ibb.co/7tpM1qHz/df12f94c.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:127,nome:"Corinthians III 25/26",preco:139.00,img:"https://i.ibb.co/4gDj2NwT/5be80b14.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:128,nome:"Flamengo edição especial 25/26",preco:139.00,img:"https://i.ibb.co/Y4HkTBCF/17cff802.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:129,nome:"Flamengo Treino II (Regata) 26/27",preco:139.00,img:"https://i.ibb.co/jPjpFSYL/4dddc8cb.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:130,nome:"Flamengo Treino I 26/27",preco:139.00,img:"https://i.ibb.co/8DkTzsCg/bc41b427.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:131,nome:"Fluminense II 26/27",preco:139.00,img:"https://i.ibb.co/5gncVNGt/3d35a740.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:132,nome:"Atlético Mineiro I 26/27",preco:139.00,img:"https://i.ibb.co/pB4y51SS/fab7ed2a.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:133,nome:"Fluminense I 26/27",preco:139.00,img:"https://i.ibb.co/Lz9v7J9y/2ecbe796.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:134,nome:"Flamengo 25/26 Infantil (Conjunto)",preco:159.00,img:"https://i.ibb.co/mCp99yWd/c2596cf5.jpg",badge:"kids",sizes:["3-4","4-5","5-6","6-7","8-9","10-11","12-13"],kids:true},
+    {id:135,nome:"Flamengo II 25/26 Feminina",preco:139.00,img:"https://i.ibb.co/tpHrrjgd/1854b138.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],feminino:true},
+    {id:136,nome:"Flamengo III 25/26 Feminina",preco:139.00,img:"https://i.ibb.co/pSx2NVs/db4a2f64.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],feminino:true},
+    {id:137,nome:"Vasco II 24/25 Feminina",preco:139.00,img:"https://i.ibb.co/dJxtqK7Y/eb3861ca.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],feminino:true},
+    {id:138,nome:"Flamengo Treino II 2026",preco:139.00,img:"https://i.ibb.co/PvR2rNBP/1b2760b0.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:139,nome:"Flamengo I 25/26",preco:139.00,img:"https://i.ibb.co/ZRb5MRGJ/98047672.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:140,nome:"Palmeiras I 25/26",preco:139.00,img:"https://i.ibb.co/YTFZ8hrp/53986ee3.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:141,nome:"Corinthians II 24/25",preco:139.00,img:"https://i.ibb.co/ym9DzGqv/2425.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:142,nome:"Corinthians I 24/25",preco:139.00,img:"https://i.ibb.co/nNjKrC2h/2425.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:143,nome:"Corinthians Treino II 2022",preco:139.00,img:"https://i.ibb.co/mCKrxGCV/Treino-2022.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:144,nome:"Botafogo-PB II 25/26",preco:139.00,img:"https://i.ibb.co/zHHzQXhK/564431e8.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:145,nome:"Botafogo-PB I 25/26",preco:139.00,img:"https://i.ibb.co/nMPHbPwc/c8c5f404.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:146,nome:"Vasco I 26/27",preco:139.00,img:"https://i.ibb.co/B2y5cVHb/17bef6a4.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+  ]},
+  premier:{nome:"Premier League",flag:"🏴󠁧󠁢󠁥󠁮󠁧󠁿",genero:"Masculino",produtos:[
+    {id:201,nome:"Manchester City Home 25/26",preco:179.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:202,nome:"Manchester City Away 25/26",preco:179.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:203,nome:"Arsenal Home 25/26",preco:179.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:204,nome:"Arsenal Away 25/26",preco:179.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:205,nome:"Liverpool Home 25/26",preco:179.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:206,nome:"Chelsea Home 25/26",preco:179.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:207,nome:"Manchester United Home 25/26",preco:179.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:208,nome:"Tottenham Home 25/26",preco:169.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:209,nome:"Newcastle Home 25/26",preco:169.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:210,nome:"Aston Villa Home 25/26",preco:169.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:211,nome:"Chelsea II 25/26",preco:139.00,img:"https://i.ibb.co/Kz5HMCWr/55bd0d12.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:212,nome:"Manchester United I 25/26",preco:139.00,img:"https://i.ibb.co/KcqtmWKr/0d6208a1.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:213,nome:"Arsenal I 25/26",preco:139.00,img:"https://i.ibb.co/v4PByKZ1/80c44c0c.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:214,nome:"Tottenham I 25/26",preco:139.00,img:"https://i.ibb.co/DPMQ46pt/2634ccff.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:215,nome:"Newcastle I 25/26",preco:139.00,img:"https://i.ibb.co/6RcJSbfg/3a1d916c.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:216,nome:"Manchester City III 25/26",preco:139.00,img:"https://i.ibb.co/LXhHQ7v9/d07cbdb0.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:217,nome:"Aston Villa I 25/26",preco:139.00,img:"https://i.ibb.co/LD0Ld7BB/9e0c7550.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:218,nome:"Chelsea I 25/26",preco:139.00,img:"https://i.ibb.co/Z1VpCfJg/ada4fd9a.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:219,nome:"Manchester City I 25/26",preco:139.00,img:"https://i.ibb.co/JF51S6WX/b6cb20b2.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+  ]},
+  laliga:{nome:"La Liga",flag:"🇪🇸",genero:"Masculino",produtos:[
+    {id:301,nome:"Real Madrid Home 25/26",preco:179.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:302,nome:"Real Madrid Away 25/26",preco:179.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:303,nome:"Barcelona Home 25/26",preco:179.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:304,nome:"Barcelona Away 25/26",preco:179.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:305,nome:"Atlético de Madrid Home 25/26",preco:169.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:306,nome:"Sevilla Home 25/26",preco:159.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:307,nome:"Valencia Home 25/26",preco:159.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:308,nome:"Villarreal Home 25/26",preco:159.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:710,nome:"Real Madrid Feminino 25/26",preco:169.90,img:"",badge:"",sizes:["PP","P","M","G","GG","2GG","3GG"]},
+    {id:711,nome:"Barcelona Feminino 25/26",preco:169.90,img:"",badge:"",sizes:["PP","P","M","G","GG","2GG","3GG"]},
+    {id:309,nome:"Barcelona I 25/26",preco:139.00,img:"https://i.ibb.co/W4HFsL7J/0328b3c6.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:310,nome:"Barcelona III 25/26",preco:139.00,img:"https://i.ibb.co/j9cQGzTr/1f4e839d.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:311,nome:"Barcelona II 25/26",preco:139.00,img:"https://i.ibb.co/VYNWw0CL/ed71c906.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:312,nome:"Real Madrid III 25/26",preco:139.00,img:"https://i.ibb.co/bjXjRrXR/8c67fead.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:313,nome:"Real Madrid II 25/26",preco:139.00,img:"https://i.ibb.co/RTX6MpKB/dc96e579.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:314,nome:"Real Madrid I 25/26",preco:139.00,img:"https://i.ibb.co/YBHvG6Vt/d7bc47c4.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+  ]},
+  bundesliga:{nome:"Bundesliga",flag:"🇩🇪",genero:"Masculino",produtos:[
+    {id:401,nome:"Bayern Munich Home 25/26",preco:179.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:402,nome:"Bayern Munich Away 25/26",preco:179.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:403,nome:"Borussia Dortmund Home 25/26",preco:169.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:404,nome:"Borussia Dortmund Away 25/26",preco:169.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:405,nome:"Bayer Leverkusen Home 25/26",preco:159.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:406,nome:"RB Leipzig Home 25/26",preco:159.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:407,nome:"Eintracht Frankfurt 25/26",preco:159.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:408,nome:"Borussia Mönchengladbach 25/26",preco:149.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+  ]},
+  seriea:{nome:"Serie A",flag:"🇮🇹",genero:"Masculino",produtos:[
+    {id:501,nome:"Inter de Milão Home 25/26",preco:179.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:502,nome:"Inter de Milão Away 25/26",preco:179.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:503,nome:"AC Milan Home 25/26",preco:179.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:504,nome:"Juventus Home 25/26",preco:169.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:505,nome:"Napoli Home 25/26",preco:169.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:506,nome:"Roma Home 25/26",preco:159.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:507,nome:"Lazio Home 25/26",preco:159.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:508,nome:"Fiorentina Home 25/26",preco:149.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+  ]},
+  ligue1:{nome:"Ligue 1",flag:"🇫🇷",genero:"Masculino",produtos:[
+    {id:601,nome:"PSG Home 25/26",preco:179.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:602,nome:"PSG Away 25/26",preco:179.90,img:"",badge:"new",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:603,nome:"Olympique de Marseille Home 25/26",preco:169.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:604,nome:"Olympique Lyonnais Home 25/26",preco:159.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:605,nome:"Monaco Home 25/26",preco:159.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:606,nome:"Lille Home 25/26",preco:149.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:607,nome:"Nice Home 25/26",preco:149.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:608,nome:"Lens Home 25/26",preco:149.90,img:"",badge:"",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:712,nome:"PSG Feminino 25/26",preco:169.90,img:"",badge:"",sizes:["PP","P","M","G","GG","2GG","3GG"]},
+    {id:609,nome:"PSG II 25/26",preco:139.00,img:"https://i.ibb.co/Qjr0078B/52d27807.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:610,nome:"PSG I 25/26",preco:139.00,img:"https://i.ibb.co/pjWRLdtd/2e8fe6f0.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+    {id:611,nome:"PSG III 25/26",preco:139.00,img:"https://i.ibb.co/LhrM2Nxr/db21194a.jpg",badge:"torcedor",sizes:["P","M","G","GG","2GG","3GG"],torcedor:true},
+  ]},
+  retro:{nome:"Coleção Retrô",flag:"⭐",genero:"Masculino",produtos:[
+    {id:801,nome:"Brasil II 1998",preco:157.00,img:"https://i.ibb.co/S4YgkWPW/073f8c65.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:809,nome:"Brasil I 1998",preco:157.00,img:"https://i.ibb.co/QFgpT6VG/a742992a.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:810,nome:"Brasil I 1994",preco:157.00,img:"https://i.ibb.co/jxmtmjc/0043cfb0.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:811,nome:"Brasil I 2002",preco:157.00,img:"https://i.ibb.co/0pLVrp4m/b59e51db.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:812,nome:"Brasil I 2004",preco:157.00,img:"https://i.ibb.co/20xRMSXy/ac6c45b0.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:813,nome:"Flamengo retrô 1981",preco:167.00,img:"https://i.ibb.co/7J71kwWs/0296c886.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:814,nome:"Flamengo retrô 1982",preco:167.00,img:"https://i.ibb.co/Y71RpWCY/0703612a.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:815,nome:"Flamengo retrô 2000",preco:167.00,img:"https://i.ibb.co/vCXNqZqC/04ee42ac.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:816,nome:"Flamengo retrô 2009",preco:167.00,img:"https://i.ibb.co/spLy0rzg/55fbe3f4.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:817,nome:"Flamengo retrô 2007",preco:167.00,img:"https://i.ibb.co/Y7RZZrbX/79d689e8.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:818,nome:"Brasil II 1994",preco:167.00,img:"https://i.ibb.co/vvwtT6Zv/269a5b59.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:819,nome:"Brasil Edição Especial 1998",preco:167.00,img:"https://i.ibb.co/Xx7GCvPG/833cf50c.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:820,nome:"Palmeiras II 1997",preco:167.00,img:"https://i.ibb.co/BKrNTsY9/1997.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:821,nome:"Vasco I 2000",preco:167.00,img:"https://i.ibb.co/HTbCsS3R/2000.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:822,nome:"Corinthians I 1996",preco:167.00,img:"https://i.ibb.co/1fzVvybf/1996.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:823,nome:"Corinthians II 1990",preco:167.00,img:"https://i.ibb.co/BKs1vrwW/1990.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:824,nome:"Corinthians I 1995",preco:167.00,img:"https://i.ibb.co/DDzL348W/1995.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:825,nome:"Palmeiras I 1992",preco:167.00,img:"https://i.ibb.co/yFgQJ09t/1992.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:826,nome:"Flamengo II 1995",preco:167.00,img:"https://i.ibb.co/Q3Bvzm9B/1995.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:827,nome:"Vasco II 1988",preco:167.00,img:"https://i.ibb.co/RTQMbnrk/1998.jpg",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:802,nome:"Argentina Retrô 1986",preco:149.90,img:"",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:803,nome:"Brasil Retrô 1970",preco:149.90,img:"",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:804,nome:"Itália Retrô 1982",preco:149.90,img:"",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:805,nome:"Alemanha Retrô 1990",preco:149.90,img:"",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:806,nome:"França Retrô 1998",preco:149.90,img:"",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:807,nome:"Holanda Retrô 1988",preco:149.90,img:"",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+    {id:808,nome:"Inglaterra Retrô 1966",preco:149.90,img:"",badge:"retro",sizes:["P","M","G","GG","2GG","3GG"]},
+  ]},
+};
+
+const prodMap={};
+Object.entries(ligas).forEach(([k,l])=>l.produtos.forEach(p=>{prodMap[p.id]={...p,genero:l.genero}}));
+
+// Favoritos — declarado antes do buildSections para o makeCard funcionar
+let favoritos = new Set(JSON.parse(localStorage.getItem('fav96')||'[]'));
+
+function fmtPreco(v){return 'R$ '+v.toFixed(2).replace('.',',');}
+function openWpp(msg){window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank');}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+function atualizarBadge(){
+  const total=carrinho.reduce((s,i)=>s+i.qty,0);
+  const b=document.getElementById('cartBadge');
+  b.textContent=total; b.classList.toggle('hidden',total===0);
+}
+
+function changeQty(id,delta){
+  const el=document.getElementById(id);
+  el.value=Math.max(1,(parseInt(el.value)||1)+delta);
+}
+
+function toggleCustom(uid){
+  const chk=document.getElementById(`custom-chk-${uid}`);
+  const fields=document.getElementById(`custom-fields-${uid}`);
+  if(chk && fields) fields.classList.toggle('show',chk.checked);
+}
+
+function adicionarCarrinho(pid, uid){
+  const p=prodMap[pid];
+  const szEl=document.getElementById(`sizes-${uid}`);
+  const qtyEl=document.getElementById(`qty-${uid}`);
+  const sz=szEl?.value||'';
+  if(!sz){showToast('⚠️ Selecione um tamanho antes!');return;}
+  const qty=parseInt(qtyEl?.value)||1;
+  const chk=document.getElementById(`custom-chk-${uid}`);
+  const personalizar=chk?.checked||false;
+  const customNome=personalizar?(document.getElementById(`custom-nome-${uid}`)?.value.trim()||''):'';
+  const customNum=personalizar?(document.getElementById(`custom-num-${uid}`)?.value.trim()||''):'';
+  if(personalizar && !customNome){showToast('⚠️ Digite o nome para personalização!');return;}
+  if(personalizar && !customNum){showToast('⚠️ Digite o número para personalização!');return;}
+  const precoFinal=p.preco+(personalizar?20:0);
+  const key=`${pid}-${sz}-${personalizar?customNome+customNum:'std'}`;
+  const idx=carrinho.findIndex(i=>i.key===key);
+  const imgSrc = p.imgs?.[0] || p.img || '';
+  if(idx>=0){carrinho[idx].qty+=qty;}
+  else{carrinho.push({key,pid,nome:p.nome,preco:precoFinal,img:imgSrc,sz,qty,genero:p.genero,personalizar,customNome,customNum});}
+  atualizarBadge();
+  const btn=document.getElementById(`btn-${uid}`);
+  if(btn){btn.textContent='✓ Adicionado';btn.classList.add('added');setTimeout(()=>{btn.textContent='+ Carrinho';btn.classList.remove('added');},1500);}
+  showToast(`✓ ${p.nome} (${sz})${personalizar?' com personalização':''} adicionado!`);
+}
+
+function removerItem(key){
+  carrinho=carrinho.filter(i=>i.key!==key);
+  atualizarBadge(); renderCarrinho();
+}
+
+function editarQty(key, delta){
+  const idx=carrinho.findIndex(i=>i.key===key);
+  if(idx<0) return;
+  const novaQty=carrinho[idx].qty+delta;
+  if(novaQty<1){ removerItem(key); return; }
+  carrinho[idx].qty=novaQty;
+  atualizarBadge(); renderCarrinho();
+}
+
+function editarTamanho(key, novoSz){
+  const idx=carrinho.findIndex(i=>i.key===key);
+  if(idx<0) return;
+  const item=carrinho[idx];
+  // checa se já existe item com mesmo produto e novo tamanho
+  const novaKey=`${item.pid}-${novoSz}-${item.personalizar?item.customNome+item.customNum:'std'}`;
+  const dupl=carrinho.findIndex(i=>i.key===novaKey);
+  if(dupl>=0 && dupl!==idx){
+    carrinho[dupl].qty+=item.qty;
+    carrinho.splice(idx,1);
+  } else {
+    carrinho[idx].sz=novoSz;
+    carrinho[idx].key=novaKey;
+  }
+  atualizarBadge(); renderCarrinho();
+}
+
+function renderCarrinho(){
+  const body=document.getElementById('cartBody');
+  const footer=document.getElementById('cartFooter');
+  if(!carrinho.length){
+    body.innerHTML=`<div class="cart-empty"><div>🛒</div><p>Seu carrinho está vazio.<br>Adicione algumas camisas!</p></div>`;
+    footer.style.display='none'; return;
+  }
+  const total=carrinho.reduce((s,i)=>s+(i.preco*i.qty),0);
+  body.innerHTML=carrinho.map(item=>{
+    const p=prodMap[item.pid];
+    const szOptions=p.sizes.map(s=>`<option value="${s}" ${s===item.sz?'selected':''}>${s}</option>`).join('');
+    return `
+    <div class="cart-item">
+      <div class="cart-item-top">
+        ${item.img?`<img class="cart-item-img" src="${item.img}" alt="${item.nome}">`:`<div class="cart-item-ph">👕</div>`}
+        <div class="cart-item-info" style="flex:1;min-width:0">
+          <div class="cart-item-name">${item.nome}</div>
+          <div class="cart-item-meta" style="margin-bottom:.3rem">
+            <span>${item.genero}</span>
+            ${item.personalizar?`<span style="background:#e8f5e9;color:#2e7d32">✂️ ${item.customNome} #${item.customNum}</span>`:''}
+          </div>
+          <div class="cart-item-price">${fmtPreco(item.preco*item.qty)}</div>
+        </div>
+      </div>
+      <div class="cart-item-controls">
+        <div class="cart-edit-group">
+          <span class="cart-edit-label">Tam.</span>
+          <select class="cart-sz-select" onchange="editarTamanho('${item.key}', this.value)">${szOptions}</select>
+        </div>
+        <div class="cart-edit-group">
+          <span class="cart-edit-label">Qtd.</span>
+          <div class="cart-qty-ctrl">
+            <button class="cart-qty-btn" onclick="editarQty('${item.key}',-1)">−</button>
+            <span class="cart-qty-num">${item.qty}</span>
+            <button class="cart-qty-btn" onclick="editarQty('${item.key}',1)">+</button>
+          </div>
+        </div>
+        <button class="cart-item-remove" onclick="removerItem('${item.key}')">🗑 Remover</button>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('cartTotal').textContent=fmtPreco(total);
+  footer.style.display='block';
+}
+
+function abrirCarrinho(){
+  renderCarrinho();
+  document.getElementById('cartPanel').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+}
+
+function fecharCarrinho(){
+  document.getElementById('cartPanel').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+}
+
+
+
+let _cardUid = 0;
+function makeCard(p,ligaNome){
+  const badgeHtml=p.badge==='new'?'<span class="badge badge-new">Novo</span>':p.badge==='retro'?'<span class="badge badge-retro">Retrô</span>':p.badge==='sale'?'<span class="badge badge-sale">Oferta</span>':p.badge==='kids'?'<span class="badge badge-kids">Kids</span>':p.badge==='jogador'?'<span class="badge badge-jogador">Jogador</span>':p.badge==='torcedor'?'<span class="badge badge-torcedor">Torcedor</span>':'';
+  const imgs = p.imgs && p.imgs.length ? p.imgs : (p.img ? [p.img] : []);
+  const hasGallery = imgs.length > 1;
+  const imgHtml = imgs.length
+    ? (hasGallery
+        ? `<div class="gallery-wrap" id="gal-${p.id}">
+            ${imgs.map((src,i)=>`<img src="${src}" class="${i===0?'gal-active':''}" onclick="abrirLightbox('${src}')" alt="${p.nome}">`).join('')}
+            <button class="gal-btn gal-prev" onclick="galNav(event,${p.id},-1)">‹</button>
+            <button class="gal-btn gal-next" onclick="galNav(event,${p.id},1)">›</button>
+            <div class="gal-dots">${imgs.map((_,i)=>`<span class="gal-dot ${i===0?'active':''}" onclick="galGoto(event,${p.id},${i})"></span>`).join('')}</div>
+           </div>`
+        : `<img src="${imgs[0]}" alt="${p.nome}" onclick="abrirLightbox('${imgs[0]}')" onerror="this.parentElement.innerHTML='<div class=card-placeholder><svg width=40 height=40 viewBox=\\'0 0 24 24\\'><path fill=\\'#ccc\\' d=\\'M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z\\'/></svg><span>Imagem em breve</span></div>'">`)
+    : `<div class="card-placeholder"><svg width="40" height="40" viewBox="0 0 24 24"><path fill="#ccc" d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg><span>Imagem em breve</span></div>`;
+  const sizesHtml=p.sizes.map((s,i)=>`<option value="${s}" ${i===0?'selected':''}>${s}</option>`).join('');
+  const medidasFn = p.kids?'abrirMedidas()':p.torcedor?'abrirMedidasTorcedor()':p.feminino?'abrirMedidasFeminino()':p.body?'abrirMedidasBody()':p.badge==='jogador'?'abrirMedidasJogador()':'';
+  const isFav = favoritos && favoritos.has(p.id);
+  const uid = `${p.id}_${++_cardUid}`;
+  return `
+    <div class="card" data-badge="${p.badge||''}" data-feminino="${p.feminino?'1':''}" data-kids="${p.kids?'1':''}" data-body="${p.body?'1':''}" data-preco="${p.preco}">
+      <div class="card-img">${imgHtml}${badgeHtml}
+        <button class="btn-fav ${isFav?'favoritado':''}" onclick="toggleFav(${p.id},this)" title="Favoritar">${isFav?'♥':'♡'}</button>
+      </div>
+      <div class="card-body">
+        <div class="card-league-row">
+          <div class="card-league">${ligaNome}</div>
+          <button class="btn-share" onclick="abrirCompartilhar('${p.nome.replace(/'/g,"\\'")}') " title="Compartilhar">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </button>
+        </div>
+        <div class="card-name">${p.nome}</div>
+        <div class="card-price">${fmtPreco(p.preco)}</div>
+        <div class="size-row">
+          <select class="sz-select" id="sizes-${uid}">${sizesHtml}</select>
+          ${medidasFn?`<button class="btn-medidas-inline" onclick="${medidasFn}">📏</button>`:''}
+        </div>
+        <label class="custom-toggle" onclick="toggleCustom('${uid}')">
+          <input type="checkbox" id="custom-chk-${uid}">
+          <span class="custom-toggle-label">✂️ Personalizar <em>(+R$ 20,00)</em></span>
+        </label>
+        <div class="custom-fields" id="custom-fields-${uid}">
+          <div class="custom-preco-extra">✂️ Personalização: +R$ 20,00</div>
+          <input class="custom-input" id="custom-nome-${uid}" type="text" placeholder="NOME (máx. 12 letras)" maxlength="12" oninput="this.value=this.value.toUpperCase().replace(/[^A-Z\s]/g,'')">
+          <input class="custom-input" id="custom-num-${uid}" type="text" placeholder="Número (ex: 10)" maxlength="2" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+        </div>
+        <div class="card-actions">
+          <div class="qty-ctrl">
+            <button class="qty-btn" onclick="changeQty('qty-${uid}',-1)">−</button>
+            <input class="qty-num" id="qty-${uid}" type="text" value="1" readonly>
+            <button class="qty-btn" onclick="changeQty('qty-${uid}',1)">+</button>
+          </div>
+          <button class="btn-add" id="btn-${uid}" onclick="adicionarCarrinho(${p.id},'${uid}')">+ Carrinho</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* LIGHTBOX */
+function abrirLightbox(src){
+  document.getElementById('lightboxImg').src=src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function fecharLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+}
+function abrirMedidas(){
+  document.getElementById('medidasOverlay').classList.add('open');
+}
+function abrirMedidasTorcedor(){
+  document.getElementById('medidasTorcedorOverlay').classList.add('open');
+}
+function abrirMedidasFeminino(){
+  document.getElementById('medidasFemininoOverlay').classList.add('open');
+}
+/* GALERIA */
+function galNav(e,pid,dir){
+  e.stopPropagation();
+  const wrap=document.getElementById('gal-'+pid);
+  if(!wrap) return;
+  const imgs=[...wrap.querySelectorAll('img')];
+  const dots=[...wrap.querySelectorAll('.gal-dot')];
+  const cur=imgs.findIndex(i=>i.classList.contains('gal-active'));
+  const next=(cur+dir+imgs.length)%imgs.length;
+  imgs[cur].classList.remove('gal-active');
+  imgs[next].classList.add('gal-active');
+  dots[cur]?.classList.remove('active');
+  dots[next]?.classList.add('active');
+}
+function galGoto(e,pid,idx){
+  e.stopPropagation();
+  const wrap=document.getElementById('gal-'+pid);
+  if(!wrap) return;
+  const imgs=[...wrap.querySelectorAll('img')];
+  const dots=[...wrap.querySelectorAll('.gal-dot')];
+  imgs.forEach((i,n)=>i.classList.toggle('gal-active',n===idx));
+  dots.forEach((d,n)=>d.classList.toggle('active',n===idx));
+}
+function abrirMedidasJogador(){
+  document.getElementById('medidasJogadorOverlay').classList.add('open');
+}
+function abrirCompartilhar(nome){
+  const url = window.location.href.split('?')[0] + '?busca=' + encodeURIComponent(nome);
+  document.getElementById('shareLinkInput').value = url;
+  document.getElementById('shareCopyBtn').textContent = 'Copiar';
+  document.getElementById('shareOverlay').classList.add('open');
+}
+function copiarLink(){
+  const input = document.getElementById('shareLinkInput');
+  input.select(); input.setSelectionRange(0,9999);
+  try{
+    navigator.clipboard.writeText(input.value).then(()=>{
+      document.getElementById('shareCopyBtn').textContent = '✓ Copiado!';
+      setTimeout(()=>document.getElementById('shareCopyBtn').textContent='Copiar',2000);
+    });
+  } catch(e){
+    document.execCommand('copy');
+    document.getElementById('shareCopyBtn').textContent = '✓ Copiado!';
+    setTimeout(()=>document.getElementById('shareCopyBtn').textContent='Copiar',2000);
+  }
+}
+function fecharMedidas(e){
+  if(e.target===document.getElementById('medidasOverlay')) document.getElementById('medidasOverlay').classList.remove('open');
+}
+function fecharMedidasTorcedor(e){
+  if(e.target===document.getElementById('medidasTorcedorOverlay')) document.getElementById('medidasTorcedorOverlay').classList.remove('open');
+}
+function fecharMedidasFeminino(e){
+  if(e.target===document.getElementById('medidasFemininoOverlay')) document.getElementById('medidasFemininoOverlay').classList.remove('open');
+}
+function fecharMedidasBody(e){
+  if(e.target===document.getElementById('medidasBodyOverlay')) document.getElementById('medidasBodyOverlay').classList.remove('open');
+}
+function fecharMedidasBtn(){
+  document.getElementById('medidasOverlay').classList.remove('open');
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    fecharLightbox();
+    ['medidasOverlay','medidasTorcedorOverlay','medidasFemininoOverlay','medidasBodyOverlay','medidasJogadorOverlay','shareOverlay'].forEach(id=>{
+      const el=document.getElementById(id); if(el) el.classList.remove('open');
+    });
+  }
+});
+
+// Centraliza abas só no desktop quando todas cabem
+window.addEventListener('load', function(){
+  const nav = document.querySelector('.liga-nav');
+  if(nav && nav.scrollWidth <= nav.clientWidth){
+    nav.style.justifyContent = 'center';
+  }
+});
+
+// Abre busca por URL ou força aba Início
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const busca = params.get('busca');
+  if(busca){
+    const input = document.getElementById('searchInput');
+    if(input){ input.value = busca; pesquisar(busca); }
+  } else {
+    // Ativa Início diretamente sem scroll
+    document.querySelectorAll('.ltab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    const btn = document.getElementById('tab-inicio');
+    const sec = document.getElementById('sec-inicio');
+    if(btn) btn.classList.add('active');
+    if(sec) sec.classList.add('active');
+  }
+})();
+function pesquisar(termo){
+  const t=termo.trim().toLowerCase();
+  const clearBtn=document.getElementById('searchClear');
+  const count=document.getElementById('searchCount');
+  const secSearch=document.getElementById('sec-search');
+  const grid=document.getElementById('searchGrid');
+  clearBtn.classList.toggle('show', t.length>0);
+  if(!t){
+    secSearch.classList.remove('active');
+    document.querySelectorAll('.section').forEach(s=>{
+      if(s.id!=='sec-search') s.style.display='';
+    });
+    document.querySelector('.liga-nav-wrap').style.display='';
+    count.textContent='';
+    return;
+  }
+  // esconde abas e seções normais
+  document.querySelector('.liga-nav-wrap').style.display='none';
+  document.querySelectorAll('.section').forEach(s=>{
+    if(s.id!=='sec-search') s.style.display='none';
+  });
+  // busca em todos os produtos
+  const resultados=[];
+  Object.values(ligas).forEach(liga=>{
+    liga.produtos.forEach(p=>{
+      if(p.nome.toLowerCase().includes(t)){
+        resultados.push({p, ligaNome:liga.nome});
+      }
+    });
+  });
+  document.getElementById('searchResultCount').textContent=`${resultados.length} resultado${resultados.length!==1?'s':''}`;
+  count.textContent=`${resultados.length} resultado${resultados.length!==1?'s':''}`;
+  if(!resultados.length){
+    grid.innerHTML=`<div class="no-results" style="grid-column:1/-1"><div>🔍</div><p>Nenhuma camisa encontrada para "<strong>${termo}</strong>".<br>Tente outro nome ou time.</p></div>`;
+  } else {
+    grid.innerHTML=resultados.map(({p,ligaNome})=>makeCard(p,ligaNome)).join('');
+  }
+  secSearch.classList.add('active');
+}
+
+function limparBusca(){
+  const input=document.getElementById('searchInput');
+  input.value='';
+  pesquisar('');
+}
+
+/* CHECKOUT */
+let pagamentoSel='';
+
+function irParaCheckout(){
+  if(!carrinho.length) return;
+  const total=carrinho.reduce((s,i)=>s+(i.preco*i.qty),0);
+  document.getElementById('checkoutTotalVal').textContent=fmtPreco(total);
+  document.getElementById('checkoutResumo').innerHTML=carrinho.map(item=>`
+    <div class="checkout-resumo-item">
+      <span>${item.nome} (${item.sz}) x${item.qty}${item.personalizar?` ✂️`:''}${item.genero==='Feminino'?' 👩':item.nome.toLowerCase().includes('infantil')||item.nome.toLowerCase().includes('kids')||item.nome.toLowerCase().includes('body')||item.nome.toLowerCase().includes('conjunto')?' 👶':''}</span>
+      <strong>${fmtPreco(item.preco*item.qty)}</strong>
+    </div>`).join('');
+  document.getElementById('cartView').style.display='none';
+  document.getElementById('checkoutView').classList.add('active');
+}
+
+function voltarCarrinho(){
+  document.getElementById('checkoutView').classList.remove('active');
+  document.getElementById('cartView').style.display='flex';
+}
+
+function selecionarPag(tipo){
+  pagamentoSel=tipo;
+  document.getElementById('pay-pix').classList.toggle('sel', tipo==='PIX');
+  document.getElementById('pay-cartao').classList.toggle('sel', tipo==='Cartão');
+}
+
+function enviarPedidoWpp(){
+  const nome=document.getElementById('co-nome').value.trim();
+  const tel=document.getElementById('co-tel').value.trim();
+  const end=document.getElementById('co-end').value.trim();
+  const cidade=document.getElementById('co-cidade').value.trim();
+  const cep=document.getElementById('co-cep').value.trim();
+  if(!nome){alert('Por favor, preencha seu nome.');return;}
+  if(!tel){alert('Por favor, preencha seu WhatsApp.');return;}
+  if(!end){alert('Por favor, preencha seu endereço.');return;}
+  if(!cidade){alert('Por favor, preencha sua cidade.');return;}
+  if(!pagamentoSel){alert('Por favor, selecione a forma de pagamento.');return;}
+  const total=carrinho.reduce((s,i)=>s+(i.preco*i.qty),0);
+  const itens=carrinho.map((item,i)=>
+    `${i+1}. ${item.nome}\n   👔 ${item.genero} | Tamanho: ${item.sz} | Qtd: ${item.qty}${item.personalizar?`\n   ✂️ Personalização: ${item.customNome} #${item.customNum} (+R$ 20,00)`:''}\n   💰 ${fmtPreco(item.preco)} x${item.qty} = ${fmtPreco(item.preco*item.qty)}`
+  ).join('\n\n');
+  const msg=`Olá! Gostaria de fazer um pedido na *Estádio 96*:\n\n`+
+    `━━━━━━━━━━━━━━━\n🛒 *PEDIDO*\n━━━━━━━━━━━━━━━\n\n${itens}\n\n`+
+    `━━━━━━━━━━━━━━━\n💰 *TOTAL: ${fmtPreco(total)}*\n━━━━━━━━━━━━━━━\n\n`+
+    `📦 *ENTREGA*\nNome: ${nome}\nTelefone: ${tel}\nEndereço: ${end}\nCidade: ${cidade}${cep?`\nCEP: ${cep}`:''}\n\n`+
+    `💳 *PAGAMENTO*: ${pagamentoSel}\n\nAguardo confirmação!`;
+  openWpp(msg);
+}
+
+function isBrasil(nome){
+  return nome.toLowerCase().includes('brasil');
+}
+
+function makeControls(prods, secKey){
+  const temTorcedor = prods.some(p=>p.badge==='torcedor');
+  const temJogador  = prods.some(p=>p.badge==='jogador');
+  const temFeminino = prods.some(p=>p.feminino);
+  const temKids     = prods.some(p=>p.kids||p.body);
+  const temRetro    = prods.some(p=>p.badge==='retro');
+  const filtros = [
+    {label:'Todos', val:'todos'},
+    ...(temTorcedor?[{label:'Torcedor',val:'torcedor'}]:[]),
+    ...(temJogador ?[{label:'Jogador', val:'jogador'}] :[]),
+    ...(temFeminino?[{label:'Feminino',val:'feminino'}]:[]),
+    ...(temKids    ?[{label:'Infantil',val:'kids'}]    :[]),
+    ...(temRetro   ?[{label:'Retrô',   val:'retro'}]   :[]),
+  ];
+  if(filtros.length <= 1) return '';
+  return `<div class="controls-bar" id="controls-${secKey}">
+    <div class="filtros-wrap">${filtros.map(f=>`<button class="filtro-btn ${f.val==='todos'?'ativo':''}" data-val="${f.val}" onclick="aplicarFiltro('${secKey}','${f.val}')">${f.label}</button>`).join('')}</div>
+    <div class="sort-row">
+      <span class="sort-label">Ordenar:</span>
+      <select class="sort-sel" onchange="aplicarOrdenacao('${secKey}',this.value)">
+        <option value="default">Padrão</option>
+        <option value="preco_asc">↑ Menor preço</option>
+        <option value="preco_desc">↓ Maior preço</option>
+        <option value="nome_az">A → Z</option>
+      </select>
+    </div>
+  </div>`;
+}
+function gridComBlocos(prodsBrasil, prodsOutros, ligaNome, secKey){
+  const brasilFiltrado = prodsBrasil.filter(p=>p.img||(p.imgs&&p.imgs.length));
+  const outrosFiltrado = prodsOutros.filter(p=>p.img||(p.imgs&&p.imgs.length)).sort((a,b)=>a.nome.localeCompare(b.nome,'pt'));
+  const todosProds = [...brasilFiltrado, ...outrosFiltrado];
+  if(!todosProds.length){
+    return `<div style="text-align:center;padding:3rem 1rem;color:var(--mid)"><div style="font-size:2.5rem">⚽</div><p style="margin-top:.5rem;font-size:.9rem">Em breve! Camisas sendo cadastradas.</p></div>`;
+  }
+  const controls = makeControls(todosProds, secKey);
+  let html = controls;
+  if(brasilFiltrado.length){
+    html += `<div class="bloco-titulo"><span class="bloco-flag">🇧🇷</span><h3>Seleção Brasileira</h3></div>`;
+    html += `<div class="grid">${brasilFiltrado.map(p=>makeCard(p,ligaNome)).join('')}</div>`;
+  }
+  if(outrosFiltrado.length){
+    if(brasilFiltrado.length) html += `<div class="bloco-titulo"><span class="bloco-flag">🌍</span><h3>Demais Seleções / Times</h3></div>`;
+    html += `<div class="grid" id="grid-${secKey}">${outrosFiltrado.map(p=>makeCard(p,ligaNome)).join('')}</div>`;
+  }
+  return html;
+}
+
+function buildSections(){
+  const todosComFoto = [];
+  Object.values(ligas).forEach(liga=>{
+    liga.produtos.filter(p=>p.img||(p.imgs&&p.imgs.length)).forEach(p=>{
+      todosComFoto.push({p, ligaNome: liga.nome});
+    });
+  });
+
+  const selBrasileira = ligas.copa2026.produtos.filter(p=>p.img||(p.imgs&&p.imgs.length));
+  const retrobrasil = ligas.retro.produtos.filter(p=>p.img && isBrasil(p.nome));
+
+  const inicioBrasil = todosComFoto.filter(({p})=>isBrasil(p.nome));
+  const inicioOutros = todosComFoto.filter(({p})=>!isBrasil(p.nome)).sort((a,b)=>a.p.nome.localeCompare(b.p.nome,'pt'));
+
+  let inicioHtml = '';
+  if(inicioBrasil.length){
+    inicioHtml += `<div class="bloco-titulo"><span class="bloco-flag">🇧🇷</span><h3>Seleção Brasileira</h3></div>`;
+    inicioHtml += `<div class="grid">${inicioBrasil.map(({p,ligaNome})=>makeCard(p,ligaNome)).join('')}</div>`;
+  }
+  if(inicioOutros.length){
+    inicioHtml += `<div class="bloco-titulo"><span class="bloco-flag">👕</span><h3>Todos os Produtos</h3></div>`;
+    inicioHtml += `<div class="grid">${inicioOutros.map(({p,ligaNome})=>makeCard(p,ligaNome)).join('')}</div>`;
+  }
+  if(!inicioBrasil.length && !inicioOutros.length){
+    inicioHtml = `<div style="text-align:center;padding:3rem 1rem;color:var(--mid)"><div style="font-size:2.5rem">⚽</div><p style="margin-top:.5rem;font-size:.9rem">Em breve!</p></div>`;
+  }
+
+  const selBrasilComFoto = selBrasileira.filter(p=>p.img||(p.imgs&&p.imgs.length));
+  let selBrasilHtml = '';
+  if(selBrasilComFoto.length){
+    selBrasilHtml += `<div class="bloco-titulo"><span class="bloco-flag">🇧🇷</span><h3>Copa & Coleção Atual</h3></div>`;
+    selBrasilHtml += `<div class="grid">${selBrasilComFoto.map(p=>makeCard(p,'Seleção Brasileira')).join('')}</div>`;
+  }
+  if(retrobrasil.length){
+    selBrasilHtml += `<div class="bloco-titulo"><span class="bloco-flag">⭐</span><h3>Retrô</h3></div>`;
+    selBrasilHtml += `<div class="grid">${retrobrasil.map(p=>makeCard(p,'Retrô Brasil')).join('')}</div>`;
+  }
+  if(!selBrasilHtml) selBrasilHtml = `<div style="text-align:center;padding:3rem 1rem;color:var(--mid)"><div style="font-size:2.5rem">🇧🇷</div><p style="margin-top:.5rem;font-size:.9rem">Em breve!</p></div>`;
+  const totalSelBrasil = selBrasilComFoto.length + retrobrasil.length;
+
+  const ligasSections = Object.entries(ligas).map(([key,liga])=>{
+    const prodsBrasil = liga.produtos.filter(p=>isBrasil(p.nome));
+    const prodsOutros = liga.produtos.filter(p=>!isBrasil(p.nome));
+    const totalComFoto = liga.produtos.filter(p=>p.img||(p.imgs&&p.imgs.length)).length;
+    const conteudo = gridComBlocos(prodsBrasil, prodsOutros, liga.nome, key);
+    return `
+    <div class="section" id="sec-${key}">
+      <div class="section-header">
+        <h2 class="section-title"><span class="flag">${liga.flag}</span>${liga.nome}</h2>
+        <span class="prod-count">${totalComFoto} camisa${totalComFoto!==1?'s':''}</span>
+      </div>
+      ${conteudo}
+    </div>`;
+  }).join('');
+
+  document.getElementById('sections').innerHTML = `
+    <div class="section active" id="sec-inicio">
+      <div class="section-header">
+        <h2 class="section-title"><span class="flag">🏠</span>Todos os Produtos</h2>
+        <span class="prod-count">${todosComFoto.length} camisa${todosComFoto.length!==1?'s':''}</span>
+      </div>
+      ${inicioHtml}
+    </div>
+    <div class="section" id="sec-selecao_brasileira">
+      <div class="section-header">
+        <h2 class="section-title"><span class="flag">🇧🇷</span>Seleção Brasileira</h2>
+        <span class="prod-count">${totalSelBrasil} camisa${totalSelBrasil!==1?'s':''}</span>
+      </div>
+      ${selBrasilHtml}
+    </div>
+    ${ligasSections}
+  `;
+}
+
+function showSection(key,btn){
+  const input=document.getElementById('searchInput');
+  if(input.value){ input.value=''; pesquisar(''); }
+  const nav=document.querySelector('.liga-nav');
+  nav.style.display='';
+  document.querySelector('.liga-nav-wrap').style.display='';
+  document.querySelectorAll('.section').forEach(s=>{ s.style.display=''; s.classList.remove('active'); });
+  document.querySelectorAll('.ltab').forEach(b=>b.classList.remove('active'));
+  const sec=document.getElementById('sec-'+key);
+  if(sec) sec.classList.add('active');
+  btn.classList.add('active');
+  // Scroll automático para deixar a aba ativa visível no centro
+  btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  window.scrollTo({top:document.querySelector('.liga-nav-wrap').offsetTop-58,behavior:'smooth'});
+}
+
+buildSections();
+atualizarFavBadge();
+
+/* ── FAVORITOS ── */
+function salvarFavs(){
+  try{localStorage.setItem('fav96',JSON.stringify([...favoritos]));}catch(e){}
+}
+
+function atualizarFavBadge(){
+  const b=document.getElementById('favBadge');
+  if(!b) return;
+  b.textContent=favoritos.size;
+  b.classList.toggle('hidden',favoritos.size===0);
+}
+
+function toggleFav(pid,btn){
+  if(favoritos.has(pid)){
+    favoritos.delete(pid);
+    btn.textContent='♡'; btn.classList.remove('favoritado');
+  } else {
+    favoritos.add(pid);
+    btn.textContent='♥'; btn.classList.add('favoritado');
+    showToast('♥ Adicionado aos favoritos!');
+  }
+  salvarFavs(); atualizarFavBadge();
+}
+
+function abrirFavoritos(){
+  renderFavoritos();
+  document.getElementById('favOverlay').classList.add('open');
+  document.getElementById('favPanel').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function fecharFavoritos(){
+  document.getElementById('favOverlay').classList.remove('open');
+  document.getElementById('favPanel').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function renderFavoritos(){
+  const body=document.getElementById('favBody');
+  if(!favoritos.size){
+    body.innerHTML=`<div class="fav-empty"><div>♡</div><p>Nenhuma camisa favoritada ainda.<br>Toque no coração para salvar suas preferidas!</p></div>`;
+    return;
+  }
+  body.innerHTML=[...favoritos].map(pid=>{
+    const p=prodMap[pid]; if(!p) return '';
+    return `<div class="fav-item">
+      ${p.img?`<img class="fav-item-img" src="${p.img}" alt="${p.nome}">`:`<div class="fav-item-ph">👕</div>`}
+      <div class="fav-item-info">
+        <div class="fav-item-name">${p.nome}</div>
+        <div class="fav-item-price">${fmtPreco(p.preco)}</div>
+        <div class="fav-item-actions">
+          <button class="btn-fav-add" onclick="fecharFavoritos()">Ver catálogo</button>
+          <button class="btn-fav-remove" onclick="removerFav(${pid})">✕ Remover</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function removerFav(pid){
+  favoritos.delete(pid);
+  salvarFavs(); atualizarFavBadge(); renderFavoritos();
+  const btn=document.querySelector(`[onclick="toggleFav(${pid},this)"]`);
+  if(btn){btn.textContent='♡';btn.classList.remove('favoritado');}
+}
+
+/* ── FILTROS E ORDENAÇÃO ── */
+let filtroAtivo={};
+let ordenacaoAtiva={};
+
+function aplicarFiltro(secKey,val){
+  filtroAtivo[secKey]=val;
+  aplicarControles(secKey);
+  document.querySelectorAll(`#controls-${secKey} .filtro-btn`).forEach(b=>{
+    const bval=b.dataset.val;
+    b.classList.toggle('ativo', bval===val);
+  });
+}
+
+function aplicarOrdenacao(secKey,val){
+  ordenacaoAtiva[secKey]=val;
+  aplicarControles(secKey);
+}
+
+function aplicarControles(secKey){
+  const sec=document.getElementById(`sec-${secKey}`);
+  if(!sec) return;
+  const cards=[...sec.querySelectorAll('.card')];
+  const filtro=filtroAtivo[secKey]||'todos';
+  const ordem=ordenacaoAtiva[secKey]||'default';
+  cards.forEach(c=>{
+    let show=true;
+    if(filtro==='torcedor') show=c.dataset.badge==='torcedor';
+    else if(filtro==='jogador') show=c.dataset.badge==='jogador';
+    else if(filtro==='feminino') show=c.dataset.feminino==='1';
+    else if(filtro==='kids') show=c.dataset.kids==='1'||c.dataset.body==='1';
+    else if(filtro==='retro') show=c.dataset.badge==='retro';
+    c.style.display=show?'':'none';
+  });
+  // Ordenação: reorganiza dentro de cada grid individualmente
+  sec.querySelectorAll('.grid').forEach(grid=>{
+    const visiveis=[...grid.querySelectorAll('.card')].filter(c=>c.style.display!=='none');
+    visiveis.sort((a,b)=>{
+      if(ordem==='preco_asc') return parseFloat(a.dataset.preco)-parseFloat(b.dataset.preco);
+      if(ordem==='preco_desc') return parseFloat(b.dataset.preco)-parseFloat(a.dataset.preco);
+      if(ordem==='nome_az') return (a.querySelector('.card-name')?.textContent||'').localeCompare(b.querySelector('.card-name')?.textContent||'','pt');
+      return 0;
+    });
+    visiveis.forEach(c=>grid.appendChild(c));
+  });
+}
+</script>
+</body>
+</html>
