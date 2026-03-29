@@ -1029,6 +1029,9 @@ function renderCarrinho(){
             <span>${item.genero}</span>
             ${item.personalizar?`<span style="background:#e8f5e9;color:#2e7d32">✂️ ${item.customNome} #${item.customNum}</span>`:''}
           </div>
+          ${item.personalizar
+            ? `<div style="font-size:.72rem;color:#888;margin-bottom:.2rem">${fmtPreco(item.preco-20)} + R$ 20,00 (personalização)</div>`
+            : ''}
           <div class="cart-item-price">${fmtPreco(item.preco*item.qty)}</div>
         </div>
       </div>
@@ -1395,7 +1398,7 @@ function buildSections(){
     });
   });
 
-  const selBrasileira = ligas.copa2026.produtos.filter(p=>p.img||(p.imgs&&p.imgs.length));
+  const selBrasileira = ligas.copa2026.produtos.filter(p=>(p.img||(p.imgs&&p.imgs.length)) && isBrasil(p.nome));
   const retrobrasil = ligas.retro.produtos.filter(p=>p.img && isBrasil(p.nome));
 
   const inicioBrasil = todosComFoto.filter(({p})=>isBrasil(p.nome));
